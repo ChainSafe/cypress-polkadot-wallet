@@ -1,0 +1,1 @@
+# cypress-polkadot-wallet

@@ -1,0 +1,4 @@
+{
+  "name": "cypress-polkadot-wallet",
+  "packageManager": "yarn@4.0.2"
+}
