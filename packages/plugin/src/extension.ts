@@ -1,9 +1,8 @@
 import { Injected, InjectedAccounts } from '@polkadot/extension-inject/types'
 import { Keyring } from '@polkadot/keyring'
 import { TypeRegistry } from '@polkadot/types'
-import { SignerPayloadJSON } from '@polkadot/types/types'
+import { SignerPayloadJSON, SignerResult } from '@polkadot/types/types'
 import { cryptoWaitReady } from '@polkadot/util-crypto'
-import { SignerResult } from '@polkadot/api/types'
 import { InjectedAccountWitMnemonic } from './commands'
 
 export interface AuthRequest {

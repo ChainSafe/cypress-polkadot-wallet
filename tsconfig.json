@@ -10,8 +10,8 @@
     "types": ["cypress", "node"],
   },
   "include": [
-    "src/**/*",
+    "packages/plugin/src/**/*",
     "**/*.config.ts",
-    "cypress/**/*"
+    "packages/example/cypress/**/*"
   ]
 }
