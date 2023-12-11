@@ -1,0 +1,17 @@
+{
+  "compilerOptions": {
+    "target": "esnext",
+    "lib": ["dom", "dom.iterable", "esnext"],
+    "esModuleInterop": true,
+    "allowSyntheticDefaultImports": true,
+    "strict": true,
+    "module": "esnext",
+    "moduleResolution": "node",
+    "types": ["cypress", "node"],
+  },
+  "include": [
+    "src/**/*",
+    "**/*.config.ts",
+    "cypress/**/*"
+  ]
+}
