@@ -15,7 +15,13 @@
         "changelogFile": "CHANGELOG.md"
       }
     ],
-    "@semantic-release/npm",
+    [
+      "semantic-release-yarn",
+      {
+        "pkgRoot": "./packages/plugin",
+        "mainWorkspace": "@chainsafe/cypress-polkadot-wallet"
+      }
+    ],
     "@semantic-release/github",
     [
       "@semantic-release/git",
