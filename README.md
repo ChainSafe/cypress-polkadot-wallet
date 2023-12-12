@@ -1,1 +1,1 @@
-# cypress-polkadot-wallet
+# cypress-polkadot-wallet plugin
