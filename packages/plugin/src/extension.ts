@@ -50,6 +50,7 @@ export class Extension {
 
     const accountAddresses = accounts.map(({ address }) => address)
     // if passed along all the accounts will be allowed for this origin
+    // there will be no need to authorize the connection
     if (allowedOrigin) {
       this.allowedOrigins[allowedOrigin] = accountAddresses
     }
