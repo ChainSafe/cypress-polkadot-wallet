@@ -1,7 +1,7 @@
 {
   "name": "@chainsafe/cypress-polkadot-wallet",
   "main": "dist/index",
-  "version": "0.0.1",
+  "version": "0.0.0-semantic-release",
   "scripts": {
     "dev": "cypress open",
     "build": "tsc",

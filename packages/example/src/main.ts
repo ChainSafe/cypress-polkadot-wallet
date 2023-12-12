@@ -19,8 +19,6 @@ import './style.css'
 //   </div>
 // `
 
-console.log('boom')
-
 document
   .querySelector<HTMLButtonElement>('#connect-accounts')!
   .addEventListener('click', async () => {
@@ -34,5 +32,3 @@ document
     const allAccounts = await web3Accounts()
     document.querySelector<HTMLDivElement>('#all-accounts')!.innerHTML = JSON.stringify(allAccounts)
   })
-
-// setupCounter(document.querySelector<HTMLButtonElement>('#counter')!)
