@@ -1,6 +1,5 @@
 import { web3Accounts, web3Enable } from '@polkadot/extension-dapp'
 import './style.css'
-import { setupCounter } from './counter.ts'
 
 // document.querySelector<HTMLDivElement>('#app')!.innerHTML = `
 //   <div>
