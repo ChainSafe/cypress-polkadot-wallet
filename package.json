@@ -4,21 +4,13 @@
   "scripts": {
     "dev": "cypress open",
     "build": "tsc",
-    "lint": "yarn eslint './{src,cypress}/**/*.ts'",
-    "format": "yarn prettier --write './{src,cypress}/**/*.ts'",
-    "format-check": "yarn prettier --check './{src,cypress}/**/*.ts'"
+    "lint": "yarn workspaces foreach --all run lint",
+    "formatAll": "yarn workspaces foreach --all run format",
+    "formatAll-check": "yarn workspaces foreach --all run format-check"
   },
   "workspaces": [
     "packages/*"
   ],
-  "devDependencies": {
-    "@typescript-eslint/eslint-plugin": "^6.13.2",
-    "@typescript-eslint/parser": "^6.13.2",
-    "eslint": "^8.55.0",
-    "eslint-plugin-cypress": "^2.15.1",
-    "prettier": "^3.1.0",
-    "typescript": "^5.3.3"
-  },
   "peerDependencies": {
     "cypress": ">=10"
   },

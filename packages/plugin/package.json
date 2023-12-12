@@ -5,9 +5,9 @@
   "scripts": {
     "dev": "cypress open",
     "build": "tsc",
-    "lint": "yarn eslint './{src,cypress}/**/*.ts'",
-    "format": "yarn prettier --write './{src,cypress}/**/*.ts'",
-    "format-check": "yarn prettier --check './{src,cypress}/**/*.ts'"
+    "lint": "yarn eslint './src/**/*.{ts, tsx, js, jsx, json, yml, yaml}'",
+    "format": "yarn prettier --write .",
+    "format-check": "yarn prettier --check ."
   },
   "peerDependencies": {
     "cypress": ">=10"
@@ -19,7 +19,15 @@
     "@polkadot/util-crypto": "^12.6.1"
   },
   "devDependencies": {
-    "cypress": "^13.6.1"
+    "@typescript-eslint/eslint-plugin": "^6.14.0",
+    "@typescript-eslint/parser": "^6.14.0",
+    "cypress": "^13.6.1",
+    "eslint": "^8.55.0",
+    "eslint-config-prettier": "^9.1.0",
+    "eslint-plugin-cypress": "^2.15.1",
+    "eslint-plugin-prettier": "^5.0.1",
+    "prettier": "^3.1.1",
+    "typescript": "^5.3.3"
   },
   "packageManager": "yarn@4.0.2"
 }

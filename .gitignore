@@ -12,3 +12,8 @@
 #!.yarn/cache
 .pnp.*
 node_modules
+dist
+packages/**/dist
+packages/**/dist
+packages/**/dist
+packages/**/dist

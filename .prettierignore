@@ -1,3 +1,4 @@
 .yarn
 lib/**/*
 build/**/*
+packages/**/dist/**/*
