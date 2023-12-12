@@ -19,7 +19,7 @@ jobs:
       - name: Install dependencies
         run: yarn workspaces focus @chainsafe/cypress-polkadot-wallet
       - name: Install semantic-release extra plugins
-        run: yarn add -W @chainsafe/cypress-polkadot-wallet --dev @semantic-release/changelog @semantic-release/git
+        run: yarn workspace @chainsafe/cypress-polkadot-wallet add @semantic-release/changelog @semantic-release/git --dev
       - name: Build
         run: yarn plugin:build
       - name: Release
