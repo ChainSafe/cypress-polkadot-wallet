@@ -19,4 +19,4 @@ import './commands'
 // Alternatively you can use CommonJS syntax:
 // require('./commands')
 
-import '../../../plugin'
+import '@chainsafe/cypress-polkadot-wallet'

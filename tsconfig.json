@@ -1,17 +1,13 @@
 {
-  "compilerOptions": {
-    "target": "esnext",
-    "lib": ["dom", "dom.iterable", "esnext"],
-    "esModuleInterop": true,
-    "allowSyntheticDefaultImports": true,
-    "strict": true,
-    "module": "esnext",
-    "moduleResolution": "node",
-    "types": ["cypress", "node"],
+  "exclude": [
+    "packages/**/tests/**",
+    "packages/**/dist/**"
+ ],
+ "compilerOptions": {
+
+    "baseUrl": ".",
+    "paths": {
+      "@chainsafe/cypress-polkadot-wallet/*": ["packages/plugin"],
+    }
   },
-  "include": [
-    "packages/plugin/src/**/*",
-    "**/*.config.ts",
-    "packages/example/cypress/**/*"
-  ]
 }

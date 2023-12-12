@@ -1,3 +1,4 @@
+import { web3Accounts, web3Enable } from '@polkadot/extension-dapp'
 import './style.css'
 import { setupCounter } from './counter.ts'
 
@@ -19,7 +20,20 @@ import { setupCounter } from './counter.ts'
 //   </div>
 // `
 
-document.querySelector<HTMLButtonElement>('#connect-accounts')!.addEventListener('click', () => {
-  console.log('hop')
-})
-setupCounter(document.querySelector<HTMLButtonElement>('#counter')!)
+console.log('boom')
+
+document
+  .querySelector<HTMLButtonElement>('#connect-accounts')!
+  .addEventListener('click', async () => {
+    console.log('click')
+    // returns an array of all the injected sources
+    // (this needs to be called first, before other requests)
+    const allInjected = await web3Enable('example-dapp')
+    document.querySelector<HTMLDivElement>('#injected')!.innerHTML = JSON.stringify(allInjected)
+    // returns an array of { address, meta: { name, source } }
+    // meta.source contains the name of the extension that provides this account
+    const allAccounts = await web3Accounts()
+    document.querySelector<HTMLDivElement>('#all-accounts')!.innerHTML = JSON.stringify(allAccounts)
+  })
+
+// setupCounter(document.querySelector<HTMLButtonElement>('#counter')!)
