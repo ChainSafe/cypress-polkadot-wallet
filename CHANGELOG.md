@@ -1,3 +1,10 @@
+# [1.0.0-beta.11](https://github.com/ChainSafe/cypress-polkadot-wallet/compare/v1.0.0-beta.10...v1.0.0-beta.11) (2023-12-13)
+
+
+### Bug Fixes
+
+* module commonJs ([794237a](https://github.com/ChainSafe/cypress-polkadot-wallet/commit/794237ac7f1f74727910efc1a48beded4b42fbc3))
+
 # [1.0.0-beta.10](https://github.com/ChainSafe/cypress-polkadot-wallet/compare/v1.0.0-beta.9...v1.0.0-beta.10) (2023-12-13)
 
 
