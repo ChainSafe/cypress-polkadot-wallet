@@ -1,3 +1,10 @@
+# [1.1.0](https://github.com/ChainSafe/cypress-polkadot-wallet/compare/v1.0.0...v1.1.0) (2023-12-13)
+
+
+### Features
+
+* Readme and Licence ([#3](https://github.com/ChainSafe/cypress-polkadot-wallet/issues/3)) ([f4221da](https://github.com/ChainSafe/cypress-polkadot-wallet/commit/f4221da7fde09ea3e9109d1eec23455c1a9ac287))
+
 # [1.1.0-beta.1](https://github.com/ChainSafe/cypress-polkadot-wallet/compare/v1.0.0...v1.1.0-beta.1) (2023-12-13)
 
 
