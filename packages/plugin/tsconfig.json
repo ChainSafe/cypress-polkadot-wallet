@@ -4,8 +4,10 @@
     "composite": true,
     "rootDir": "./src",
     "outDir": "./dist",
+    "allowJs": false,
     "declaration": true,
-    "allowJs": false
+    "declarationMap": true,
+    "sourceMap": true,
   },
   "include": ["src/**/*.ts"]
 }
