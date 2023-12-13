@@ -1,3 +1,10 @@
+# [1.0.0-beta.8](https://github.com/ChainSafe/cypress-polkadot-wallet/compare/v1.0.0-beta.7...v1.0.0-beta.8) (2023-12-13)
+
+
+### Bug Fixes
+
+* refactor ([323b312](https://github.com/ChainSafe/cypress-polkadot-wallet/commit/323b31202db131c33ccffbea03d9b03c510dbc37))
+
 # [1.0.0-beta.7](https://github.com/ChainSafe/cypress-polkadot-wallet/compare/v1.0.0-beta.6...v1.0.0-beta.7) (2023-12-13)
 
 

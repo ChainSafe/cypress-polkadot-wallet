@@ -106,4 +106,3 @@ export class Extension {
         this.txRequests[id].reject(reason);
     };
 }
-//# sourceMappingURL=extension.js.map
