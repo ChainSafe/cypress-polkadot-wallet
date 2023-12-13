@@ -2,8 +2,8 @@
   "name": "cypress-polkadot-wallet-monorepo",
   "private": true,
   "scripts": {
-    "dev": "cypress open",
-    "build": "tsc",
+    "plugin:build": "yarn workspace @chainsafe/cypress-polkadot-wallet build",
+    "build": "yarn workspaces foreach --all run build",
     "lint": "yarn workspaces foreach --all run lint",
     "formatAll": "yarn workspaces foreach --all run format",
     "formatAll-check": "yarn workspaces foreach --all run format-check"

@@ -14,7 +14,7 @@
     "format-check": "yarn prettier --check ."
   },
   "dependencies": {
-    "@chainsafe/cypress-polkadot-wallet": "0.0.1",
+    "@chainsafe/cypress-polkadot-wallet": "0.0.0-semantic-release",
     "@polkadot/extension-dapp": "^0.46.6"
   },
   "devDependencies": {

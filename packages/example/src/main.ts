@@ -1,6 +1,5 @@
 import { web3Accounts, web3Enable } from '@polkadot/extension-dapp'
 import './style.css'
-import { setupCounter } from './counter.ts'
 
 // document.querySelector<HTMLDivElement>('#app')!.innerHTML = `
 //   <div>
@@ -20,8 +19,6 @@ import { setupCounter } from './counter.ts'
 //   </div>
 // `
 
-console.log('boom')
-
 document
   .querySelector<HTMLButtonElement>('#connect-accounts')!
   .addEventListener('click', async () => {
@@ -35,5 +32,3 @@ document
     const allAccounts = await web3Accounts()
     document.querySelector<HTMLDivElement>('#all-accounts')!.innerHTML = JSON.stringify(allAccounts)
   })
-
-// setupCounter(document.querySelector<HTMLButtonElement>('#counter')!)

@@ -1,0 +1,29 @@
+name: Release
+
+on:
+  push:
+    branches: [main, beta]
+
+jobs:
+  release:
+    name: Release
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v2
+      - name: Setup Node
+        uses: actions/setup-node@v1
+        with:
+          node-version: 18.x
+      - name: Install dependencies
+        run: yarn workspaces focus @chainsafe/cypress-polkadot-wallet
+      - name: Install semantic-release extra plugins
+        run: yarn workspace @chainsafe/cypress-polkadot-wallet add @semantic-release/changelog @semantic-release/git semantic-release-yarn --dev
+      - name: Build
+        run: yarn plugin:build
+      - name: Release
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          YARN_NPM_AUTH_TOKEN: ${{ secrets.NPM_PUBLISH_TOKEN }}
+        run: npx semantic-release

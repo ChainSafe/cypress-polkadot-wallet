@@ -1,7 +1,6 @@
 {
   "name": "@chainsafe/cypress-polkadot-wallet",
-  "main": "dist/index",
-  "version": "0.0.1",
+  "version": "1.0.0-beta.7",
   "scripts": {
     "dev": "cypress open",
     "build": "tsc",
@@ -9,6 +8,10 @@
     "format": "yarn prettier --write .",
     "format-check": "yarn prettier --check ."
   },
+  "main": "dist/index.js",
+  "files": [
+    "dist"
+  ],
   "peerDependencies": {
     "cypress": ">=10"
   },
