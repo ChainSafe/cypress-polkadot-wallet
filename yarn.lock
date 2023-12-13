@@ -12,7 +12,21 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@chainsafe/cypress-polkadot-wallet@npm:0.0.0-semantic-release, @chainsafe/cypress-polkadot-wallet@workspace:packages/plugin":
+"@chainsafe/cypress-polkadot-wallet@npm:0.0.0-semantic-release":
+  version: 0.0.0-semantic-release
+  resolution: "@chainsafe/cypress-polkadot-wallet@npm:0.0.0-semantic-release"
+  dependencies:
+    "@polkadot/extension-inject": "npm:^0.46.6"
+    "@polkadot/keyring": "npm:^12.6.1"
+    "@polkadot/types": "npm:^10.11.1"
+    "@polkadot/util-crypto": "npm:^12.6.1"
+  peerDependencies:
+    cypress: ">=10"
+  checksum: 92c5c6abb3a83d24862310b5802b312fa7b264b29e826c3531fcfb41ec8ff33f1609c0550c5e5b8dd206d991b8553fea49c138998a4886b9250206aa1ee83061
+  languageName: node
+  linkType: hard
+
+"@chainsafe/cypress-polkadot-wallet@workspace:packages/plugin":
   version: 0.0.0-use.local
   resolution: "@chainsafe/cypress-polkadot-wallet@workspace:packages/plugin"
   dependencies:

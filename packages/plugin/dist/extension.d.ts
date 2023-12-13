@@ -43,4 +43,3 @@ export declare class Extension {
     approveTx: (id: number) => void;
     rejectTx: (id: number, reason: string) => void;
 }
-//# sourceMappingURL=extension.d.ts.map
