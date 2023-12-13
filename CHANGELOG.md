@@ -1,3 +1,10 @@
+# [1.0.0-beta.6](https://github.com/ChainSafe/cypress-polkadot-wallet/compare/v1.0.0-beta.5...v1.0.0-beta.6) (2023-12-13)
+
+
+### Bug Fixes
+
+* unignore dist ([ce8dfcb](https://github.com/ChainSafe/cypress-polkadot-wallet/commit/ce8dfcbca1d39faf6df69ebd466d299d15c35cc9))
+
 # [1.0.0-beta.5](https://github.com/ChainSafe/cypress-polkadot-wallet/compare/v1.0.0-beta.4...v1.0.0-beta.5) (2023-12-13)
 
 
