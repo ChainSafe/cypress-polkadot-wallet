@@ -22,7 +22,7 @@ declare global {
       ) => Chainable<AUTWindow>
 
       /**
-       * Read the authentication request queue.
+       * Read the authentication request queue
        * @example cy.getAuthRequests().then((authQueue) => { cy.wrap(Object.values(authQueue).length).should("eq", 1) })
        */
       getAuthRequests: () => Chainable<AuthRequests>
@@ -36,7 +36,7 @@ declare global {
       enableAuth: (id: number, accountAddresses: string[]) => void
 
       /**
-       * Reject a specific request
+       * Reject a specific authentication request
        * @param {number} id - the id of the request to reject. This id is part of the getAuthRequests object response.
        * @param {reason} reason - the reason for the rejection
        * @example cy.rejectAuth(1694443839903, "Cancelled")
@@ -44,23 +44,23 @@ declare global {
       rejectAuth: (id: number, reason: string) => void
 
       /**
-       * Read the tx request queue.
+       * Read the tx request queue
        * @example cy.getTxRequests().then((txQueue) => { cy.wrap(Object.values(txQueue).length).should("eq", 1) })
        */
       getTxRequests: () => Chainable<TxRequests>
 
       /**
-       * Authorize a specific request
+       * Authorize a specific transaction
        * @param {number} id - the id of the request to approve. This id is part of the getTxRequests object response.
        * @example cy.approveTx(1694443839903)
        */
       approveTx: (id: number) => void
 
       /**
-       * Reject a specific request
+       * Reject a specific transaction
        * @param {number} id - the id of the tx request to reject. This id is part of the getTxRequests object response.
        * @param {reason} reason - the reason for the rejection
-       * @example cy.rejectAuth(1694443839903, "Cancelled")
+       * @example cy.rejectTx(1694443839903, "Cancelled")
        */
       rejectTx: (id: number, reason: string) => void
     }
