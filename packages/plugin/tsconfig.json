@@ -5,7 +5,9 @@
     "rootDir": "./src",
     "outDir": "./dist",
     "allowJs": false,
-    "declaration": true
+    "module": "CommonJS",
+    "declaration": true,
+    "sourceMap": true,
   },
   "include": ["src/**/*.ts"]
 }
