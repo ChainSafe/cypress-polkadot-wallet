@@ -3,6 +3,9 @@ name: Release
 on:
   push:
     branches: [main, beta]
+    paths:
+      - 'packages/plugin/**/*'
+      - '.github/workflows/release.yml'
 
 jobs:
   release:
