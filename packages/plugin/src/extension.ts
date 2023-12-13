@@ -3,7 +3,7 @@ import { Keyring } from '@polkadot/keyring'
 import { TypeRegistry } from '@polkadot/types'
 import { SignerPayloadJSON, SignerResult } from '@polkadot/types/types'
 import { cryptoWaitReady } from '@polkadot/util-crypto'
-import { InjectedAccountWitMnemonic } from './commands'
+import { InjectedAccountWitMnemonic } from './types'
 
 export interface AuthRequest {
   id: number
