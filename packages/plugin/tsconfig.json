@@ -3,7 +3,9 @@
   "compilerOptions": {
     "composite": true,
     "rootDir": "./src",
-    "outDir": "./dist"
+    "outDir": "./dist",
+    "declaration": true,
+    "allowJs": false
   },
-  "include": ["src/**/*"]
+  "include": ["src/**/*.ts"]
 }

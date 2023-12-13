@@ -18,7 +18,7 @@
     [
       "semantic-release-yarn",
       {
-        "pkgRoot": "./packages/plugin",
+        "pkgRoot": "./packages/plugin/dist/",
         "mainWorkspace": "@chainsafe/cypress-polkadot-wallet"
       }
     ],
