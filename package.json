@@ -1,6 +1,7 @@
 {
   "name": "cypress-polkadot-wallet-monorepo",
   "private": true,
+  "license": "Apache-2.0",
   "scripts": {
     "plugin:build": "yarn workspace @chainsafe/cypress-polkadot-wallet build",
     "build": "yarn workspaces foreach --all run build",

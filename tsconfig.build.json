@@ -4,10 +4,6 @@
       "skipLibCheck": true,
       "forceConsistentCasingInFileNames": true,
       "types": ["cypress", "node"],
-      "target": "esnext",
-      "lib": ["dom", "dom.iterable", "esnext"],
-      "module": "esnext",
-      "moduleResolution": "node",
     },
     "exclude": [
       "node_modules", "packages/**/node_modules", "packages/**/dist"
