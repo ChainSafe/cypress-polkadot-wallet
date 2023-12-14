@@ -1,6 +1,21 @@
 {
   "name": "@chainsafe/cypress-polkadot-wallet",
   "version": "1.2.0",
+  "keywords": [
+    "polkadot",
+    "wallet",
+    "cypress",
+    "plugin",
+    "test"
+  ],
+  "homepage": "https://github.com/ChainSafe/cypress-polkadot-wallet",
+  "bugs": {
+    "url": "https://github.com/ChainSafe/cypress-polkadot-wallet/issues"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/ChainSafe/cypress-polkadot-wallet.git"
+  },
   "scripts": {
     "dev": "cypress open",
     "build": "tsc",

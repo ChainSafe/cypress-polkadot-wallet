@@ -36,69 +36,167 @@ require('@chainsafe/cypress-polkadot-wallet')
 
 ## 🧪 Usage
 
-You can now easily use `cy.clicks()`, and all other commands.
+You can now easily use the following commands:
 
-```jsdoc
-/**
-* Initialized the Polkadot extension. If an origin is passed there is no need to authorize the first connection for Dapps of this origin
-* @param {InjectedAccount[]} accounts - Accounts to load into the extension.
-* @param {string | undefined} origin - Dapp name to automatically share accounts without needing to authorize
-* @param {string} origin - Dapp name to allow the accounts for automatically
-* @example cy.initExtension([{ address: '7NPoMQbiA6trJKkjB35uk96MeJD4PGWkLQLH7k7hXEkZpiba', name: 'Alice', type: 'sr25519'}], 'Multix')
-*/
-initExtension: (
-accounts: InjectedAccountWitMnemonic[],
-origin?: string
-) => Chainable<AUTWindow>
+## Functions
 
-/**
-* Read the authentication request queue
-* @example cy.getAuthRequests().then((authQueue) => { cy.wrap(Object.values(authQueue).length).should("eq", 1) })
-*/
-getAuthRequests: () => Chainable<AuthRequests>
+<dl>
+<dt><a href="#initExtension">initExtension(accounts, origin, origin)</a></dt>
+<dd><p>Initialized the Polkadot extension. If an origin is passed there is no need to authorize the first connection for Dapps of this origin</p>
+</dd>
+<dt><a href="#getAuthRequests">getAuthRequests()</a></dt>
+<dd><p>Read the authentication request queue</p>
+</dd>
+<dt><a href="#enableAuth">enableAuth(id, accountAddresses)</a></dt>
+<dd><p>Authorize a specific request</p>
+</dd>
+<dt><a href="#rejectAuth">rejectAuth(id, reason)</a></dt>
+<dd><p>Reject a specific authentication request</p>
+</dd>
+<dt><a href="#getTxRequests">getTxRequests()</a></dt>
+<dd><p>Read the tx request queue</p>
+</dd>
+<dt><a href="#approveTx">approveTx(id)</a></dt>
+<dd><p>Authorize a specific transaction</p>
+</dd>
+<dt><a href="#rejectTx">rejectTx(id, reason)</a></dt>
+<dd><p>Reject a specific transaction</p>
+</dd>
+</dl>
 
-/**
-* Authorize a specific request
-* @param {number} id - the id of the request to authorize. This id is part of the getAuthRequests object response.
-* @param {string[]} accountAddresses - the account addresses to share with the applications. These addresses must be part of the ones shared in the `initExtension`
-* @example cy.enableAuth(1694443839903, ["7NPoMQbiA6trJKkjB35uk96MeJD4PGWkLQLH7k7hXEkZpiba"])
-*/
-enableAuth: (id: number, accountAddresses: string[]) => void
+<a name="initExtension"></a>
 
-/**
-* Reject a specific authentication request
-* @param {number} id - the id of the request to reject. This id is part of the getAuthRequests object response.
-* @param {reason} reason - the reason for the rejection
-* @example cy.rejectAuth(1694443839903, "Cancelled")
-*/
-rejectAuth: (id: number, reason: string) => void
+## initExtension(accounts, origin, origin)
 
-/**
-* Read the tx request queue
-* @example cy.getTxRequests().then((txQueue) => { cy.wrap(Object.values(txQueue).length).should("eq", 1) })
-*/
-getTxRequests: () => Chainable<TxRequests>
+Initialized the Polkadot extension. If an origin is passed there is no need to authorize the first connection for Dapps of this origin
 
-/**
-* Authorize a specific transaction
-* @param {number} id - the id of the request to approve. This id is part of the getTxRequests object response.
-* @example cy.approveTx(1694443839903)
-*/
-approveTx: (id: number) => void
+**Kind**: global function
 
-/**
-* Reject a specific transaction
-* @param {number} id - the id of the tx request to reject. This id is part of the getTxRequests object response.
-* @param {reason} reason - the reason for the rejection
-* @example cy.rejectTx(1694443839903, "Cancelled")
-*/
-rejectTx: (id: number, reason: string) => void
+| Param    | Type                                          | Description                                                                 |
+| -------- | --------------------------------------------- | --------------------------------------------------------------------------- |
+| accounts | <code>Array.&lt;InjectedAccount&gt;</code>    | Accounts to load into the extension.                                        |
+| origin   | <code>string</code> \| <code>undefined</code> | Dapp name to automatically share accounts with without needing to authorize |
 
+**Example**
+
+```js
+cy.initExtension(
+  [{ address: '7NPoMQbiA6trJKkjB35uk96MeJD4PGWkLQLH7k7hXEkZpiba', name: 'Alice', type: 'sr25519' }],
+  'Multix'
+)
+```
+
+<a name="getAuthRequests"></a>
+
+## getAuthRequests()
+
+Read the authentication request queue
+
+**Kind**: global function  
+**Example**
+
+```js
+cy.getAuthRequests().then((authQueue) => {
+  cy.wrap(Object.values(authQueue).length).should('eq', 1)
+})
+```
+
+<a name="enableAuth"></a>
+
+## enableAuth(id, accountAddresses)
+
+Authorize a specific request
+
+**Kind**: global function
+
+| Param            | Type                              | Description                                                                                                                  |
+| ---------------- | --------------------------------- | ---------------------------------------------------------------------------------------------------------------------------- |
+| id               | <code>number</code>               | the id of the request to authorize. This id is part of the getAuthRequests object response.                                  |
+| accountAddresses | <code>Array.&lt;string&gt;</code> | the account addresses to share with the applications. These addresses must be part of the ones shared in the `initExtension` |
+
+**Example**
+
+```js
+cy.enableAuth(1694443839903, ['7NPoMQbiA6trJKkjB35uk96MeJD4PGWkLQLH7k7hXEkZpiba'])
+```
+
+<a name="rejectAuth"></a>
+
+## rejectAuth(id, reason)
+
+Reject a specific authentication request
+
+**Kind**: global function
+
+| Param  | Type                | Description                                                                              |
+| ------ | ------------------- | ---------------------------------------------------------------------------------------- |
+| id     | <code>number</code> | the id of the request to reject. This id is part of the getAuthRequests object response. |
+| reason | <code>reason</code> | the reason for the rejection                                                             |
+
+**Example**
+
+```js
+cy.rejectAuth(1694443839903, 'Cancelled')
+```
+
+<a name="getTxRequests"></a>
+
+## getTxRequests()
+
+Read the tx request queue
+
+**Kind**: global function  
+**Example**
+
+```js
+cy.getTxRequests().then((txQueue) => {
+  cy.wrap(Object.values(txQueue).length).should('eq', 1)
+})
+```
+
+<a name="approveTx"></a>
+
+## approveTx(id)
+
+Authorize a specific transaction
+
+**Kind**: global function
+
+| Param | Type                | Description                                                                             |
+| ----- | ------------------- | --------------------------------------------------------------------------------------- |
+| id    | <code>number</code> | the id of the request to approve. This id is part of the getTxRequests object response. |
+
+**Example**
+
+```js
+cy.approveTx(1694443839903)
+```
+
+<a name="rejectTx"></a>
+
+## rejectTx(id, reason)
+
+Reject a specific transaction
+
+**Kind**: global function
+
+| Param  | Type                | Description                                                                               |
+| ------ | ------------------- | ----------------------------------------------------------------------------------------- |
+| id     | <code>number</code> | the id of the tx request to reject. This id is part of the getTxRequests object response. |
+| reason | <code>reason</code> | the reason for the rejection                                                              |
+
+**Example**
+
+```js
+cy.rejectTx(1694443839903, 'Cancelled')
 ```
 
 ## 📐 Example
 
-Take a look at [Cypress folder](/packages/example/cypress/e2e/test%20cypress-polkadot-wallet%20plugin.cy.ts)
+We have a very simple Dapp example, and a set of Cypress tests using @chainsafe/cypress-polkadot-wallet
+
+- Take a look at the [Example Dapp](/packages/example/src)
+- Take a look at the [Cypress tests](/packages/example/cypress/e2e/test%20cypress-polkadot-wallet%20plugin.cy.ts)
 
 ## 📄 License
 

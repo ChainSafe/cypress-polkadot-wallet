@@ -7,8 +7,7 @@ declare global {
       /**
        * Initialized the Polkadot extension. If an origin is passed there is no need to authorize the first connection for Dapps of this origin
        * @param {InjectedAccount[]} accounts - Accounts to load into the extension.
-       * @param {string | undefined} origin - Dapp name to automatically share accounts without needing to authorize
-       * @param {string} origin - Dapp name to allow the accounts for automatically
+       * @param {string | undefined} origin - Dapp name to automatically share accounts with, without needing to authorize
        * @example cy.initExtension([{ address: '7NPoMQbiA6trJKkjB35uk96MeJD4PGWkLQLH7k7hXEkZpiba', name: 'Alice', type: 'sr25519'}], 'Multix')
        */
       initExtension: (
