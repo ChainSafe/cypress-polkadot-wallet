@@ -41,8 +41,8 @@ You can now easily use the following commands:
 ## Functions
 
 <dl>
-<dt><a href="#initExtension">initExtension(accounts, origin, origin)</a></dt>
-<dd><p>Initialized the Polkadot extension. If an origin is passed there is no need to authorize the first connection for Dapps of this origin</p>
+<dt><a href="#initExtension">initExtension(accounts, origin)</a></dt>
+<dd><p>Initialize the Polkadot extension. If an origin is passed there is no need to authorize the first connection for Dapps of this origin</p>
 </dd>
 <dt><a href="#getAuthRequests">getAuthRequests()</a></dt>
 <dd><p>Read the authentication request queue</p>
@@ -66,9 +66,9 @@ You can now easily use the following commands:
 
 <a name="initExtension"></a>
 
-## initExtension(accounts, origin, origin)
+## initExtension(accounts, origin)
 
-Initialized the Polkadot extension. If an origin is passed there is no need to authorize the first connection for Dapps of this origin
+Initialize the Polkadot extension. If an origin is passed there is no need to authorize the first connection for Dapps of this origin
 
 **Kind**: global function
 
