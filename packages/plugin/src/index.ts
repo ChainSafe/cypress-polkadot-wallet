@@ -1,19 +1,16 @@
-import { AuthRequests, Extension, TxRequests } from './extension'
+import { AuthRequests, Wallet, TxRequests } from './wallet'
 import { InjectedAccountWitMnemonic } from './types'
 
 declare global {
   namespace Cypress {
     interface Chainable {
       /**
-       * Initialized the Polkadot extension. If an origin is passed there is no need to authorize the first connection for Dapps of this origin
-       * @param {InjectedAccount[]} accounts - Accounts to load into the extension.
+       * Initialized the Polkadot wallet. If an origin is passed there is no need to authorize the first connection for Dapps of this origin
+       * @param {InjectedAccount[]} accounts - Accounts to load into the wallet.
        * @param {string | undefined} origin - Dapp name to automatically share accounts with, without needing to authorize
-       * @example cy.initExtension([{ address: '7NPoMQbiA6trJKkjB35uk96MeJD4PGWkLQLH7k7hXEkZpiba', name: 'Alice', type: 'sr25519'}], 'Multix')
+       * @example cy.initWallet([{ address: '7NPoMQbiA6trJKkjB35uk96MeJD4PGWkLQLH7k7hXEkZpiba', name: 'Alice', type: 'sr25519'}], 'Multix')
        */
-      initExtension: (
-        accounts: InjectedAccountWitMnemonic[],
-        origin?: string
-      ) => Chainable<AUTWindow>
+      initWallet: (accounts: InjectedAccountWitMnemonic[], origin?: string) => Chainable<AUTWindow>
 
       /**
        * Read the authentication request queue
@@ -24,7 +21,7 @@ declare global {
       /**
        * Authorize a specific request
        * @param {number} id - the id of the request to authorize. This id is part of the getAuthRequests object response.
-       * @param {string[]} accountAddresses - the account addresses to share with the applications. These addresses must be part of the ones shared in the `initExtension`
+       * @param {string[]} accountAddresses - the account addresses to share with the applications. These addresses must be part of the ones shared in the `initWallet`
        * @example cy.enableAuth(1694443839903, ["7NPoMQbiA6trJKkjB35uk96MeJD4PGWkLQLH7k7hXEkZpiba"])
        */
       enableAuth: (id: number, accountAddresses: string[]) => void
@@ -61,44 +58,44 @@ declare global {
   }
 }
 
-const extension = new Extension()
+const wallet = new Wallet()
 
-const injectExtension = (win: Cypress.AUTWindow, extension: Extension) => {
+const injectWallet = (win: Cypress.AUTWindow, wallet: Wallet) => {
   Object.defineProperty(win, 'injectedWeb3', {
-    get: () => extension.getInjectedEnable(),
+    get: () => wallet.getInjectedEnable(),
     set: () => {}
   })
 }
 
-Cypress.Commands.add('initExtension', (accounts: InjectedAccountWitMnemonic[], origin?: string) => {
-  cy.log('Initializing extension')
-  cy.wrap(extension.init(accounts, origin))
+Cypress.Commands.add('initWallet', (accounts: InjectedAccountWitMnemonic[], origin?: string) => {
+  cy.log('Initializing Wallet')
+  cy.wrap(wallet.init(accounts, origin))
 
   return cy.window().then((win) => {
-    injectExtension(win, extension)
+    injectWallet(win, wallet)
   })
 })
 
 Cypress.Commands.add('getAuthRequests', () => {
-  return cy.wrap(extension.getAuthRequests())
+  return cy.wrap(wallet.getAuthRequests())
 })
 
 Cypress.Commands.add('enableAuth', (id: number, accountAddresses: string[]) => {
-  return extension.enableAuth(id, accountAddresses)
+  return wallet.enableAuth(id, accountAddresses)
 })
 
 Cypress.Commands.add('rejectAuth', (id: number, reason: string) => {
-  return extension.rejectAuth(id, reason)
+  return wallet.rejectAuth(id, reason)
 })
 
 Cypress.Commands.add('getTxRequests', () => {
-  return cy.wrap(extension.getTxRequests())
+  return cy.wrap(wallet.getTxRequests())
 })
 
 Cypress.Commands.add('approveTx', (id: number) => {
-  return extension.approveTx(id)
+  return wallet.approveTx(id)
 })
 
 Cypress.Commands.add('rejectTx', (id: number, reason: string) => {
-  return extension.rejectTx(id, reason)
+  return wallet.rejectTx(id, reason)
 })

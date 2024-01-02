@@ -41,8 +41,8 @@ You can now easily use the following commands:
 ## Functions
 
 <dl>
-<dt><a href="#initExtension">initExtension(accounts, origin)</a></dt>
-<dd><p>Initialize the Polkadot extension. If an origin is passed there is no need to authorize the first connection for Dapps of this origin</p>
+<dt><a href="#initWallet">initWallet(accounts, origin)</a></dt>
+<dd><p>Initialize the Polkadot wallet. If an origin is passed there is no need to authorize the first connection for Dapps of this origin</p>
 </dd>
 <dt><a href="#getAuthRequests">getAuthRequests()</a></dt>
 <dd><p>Read the authentication request queue</p>
@@ -64,23 +64,23 @@ You can now easily use the following commands:
 </dd>
 </dl>
 
-<a name="initExtension"></a>
+<a name="initWallet"></a>
 
-## initExtension(accounts, origin)
+## initWallet(accounts, origin)
 
-Initialize the Polkadot extension. If an origin is passed there is no need to authorize the first connection for Dapps of this origin
+Initialize the Polkadot wallet. If an origin is passed there is no need to authorize the first connection for Dapps of this origin
 
 **Kind**: global function
 
 | Param    | Type                                          | Description                                                                 |
 | -------- | --------------------------------------------- | --------------------------------------------------------------------------- |
-| accounts | <code>Array.&lt;InjectedAccount&gt;</code>    | Accounts to load into the extension.                                        |
+| accounts | <code>Array.&lt;InjectedAccount&gt;</code>    | Accounts to load into the wallet.                                           |
 | origin   | <code>string</code> \| <code>undefined</code> | Dapp name to automatically share accounts with without needing to authorize |
 
 **Example**
 
 ```js
-cy.initExtension(
+cy.initWallet(
   [{ address: '7NPoMQbiA6trJKkjB35uk96MeJD4PGWkLQLH7k7hXEkZpiba', name: 'Alice', type: 'sr25519' }],
   'Multix'
 )
@@ -109,10 +109,10 @@ Authorize a specific request
 
 **Kind**: global function
 
-| Param            | Type                              | Description                                                                                                                  |
-| ---------------- | --------------------------------- | ---------------------------------------------------------------------------------------------------------------------------- |
-| id               | <code>number</code>               | the id of the request to authorize. This id is part of the getAuthRequests object response.                                  |
-| accountAddresses | <code>Array.&lt;string&gt;</code> | the account addresses to share with the applications. These addresses must be part of the ones shared in the `initExtension` |
+| Param            | Type                              | Description                                                                                                               |
+| ---------------- | --------------------------------- | ------------------------------------------------------------------------------------------------------------------------- |
+| id               | <code>number</code>               | the id of the request to authorize. This id is part of the getAuthRequests object response.                               |
+| accountAddresses | <code>Array.&lt;string&gt;</code> | the account addresses to share with the applications. These addresses must be part of the ones shared in the `initWallet` |
 
 **Example**
 
