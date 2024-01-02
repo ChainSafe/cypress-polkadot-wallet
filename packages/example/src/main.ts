@@ -28,7 +28,7 @@ document
     const allInjected = await web3Enable('example-dapp')
     document.querySelector<HTMLDivElement>('#injected')!.innerHTML = JSON.stringify(allInjected)
     // returns an array of { address, meta: { name, source } }
-    // meta.source contains the name of the extension that provides this account
+    // meta.source contains the name of the wallet that provides this account
     const allAccounts = await web3Accounts()
     document.querySelector<HTMLDivElement>('#all-accounts')!.innerHTML = JSON.stringify(allAccounts)
   })

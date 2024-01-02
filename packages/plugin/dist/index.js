@@ -1,35 +1,35 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
-var extension_1 = require("./extension");
-var extension = new extension_1.Extension();
-var injectExtension = function (win, extension) {
+var wallet_1 = require("./wallet");
+var wallet = new wallet_1.Wallet();
+var injectWallet = function (win, wallet) {
     Object.defineProperty(win, 'injectedWeb3', {
-        get: function () { return extension.getInjectedEnable(); },
+        get: function () { return wallet.getInjectedEnable(); },
         set: function () { }
     });
 };
-Cypress.Commands.add('initExtension', function (accounts, origin) {
-    cy.log('Initializing extension');
-    cy.wrap(extension.init(accounts, origin));
+Cypress.Commands.add('initWallet', function (accounts, origin) {
+    cy.log('Initializing Wallet');
+    cy.wrap(wallet.init(accounts, origin));
     return cy.window().then(function (win) {
-        injectExtension(win, extension);
+        injectWallet(win, wallet);
     });
 });
 Cypress.Commands.add('getAuthRequests', function () {
-    return cy.wrap(extension.getAuthRequests());
+    return cy.wrap(wallet.getAuthRequests());
 });
-Cypress.Commands.add('enableAuth', function (id, accountAddresses) {
-    return extension.enableAuth(id, accountAddresses);
+Cypress.Commands.add('approveAuth', function (id, accountAddresses) {
+    return wallet.approveAuth(id, accountAddresses);
 });
 Cypress.Commands.add('rejectAuth', function (id, reason) {
-    return extension.rejectAuth(id, reason);
+    return wallet.rejectAuth(id, reason);
 });
 Cypress.Commands.add('getTxRequests', function () {
-    return cy.wrap(extension.getTxRequests());
+    return cy.wrap(wallet.getTxRequests());
 });
 Cypress.Commands.add('approveTx', function (id) {
-    return extension.approveTx(id);
+    return wallet.approveTx(id);
 });
 Cypress.Commands.add('rejectTx', function (id, reason) {
-    return extension.rejectTx(id, reason);
+    return wallet.rejectTx(id, reason);
 });

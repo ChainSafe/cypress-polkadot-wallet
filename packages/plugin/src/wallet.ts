@@ -23,7 +23,7 @@ export type TxRequests = Record<number, TxRequest>
 export type AuthRequests = Record<number, AuthRequest>
 
 export type EnableRequest = number
-export class Extension {
+export class Wallet {
   authRequests: AuthRequests = {}
   accounts: InjectedAccountWitMnemonic[] = []
   txRequests: TxRequests = {}
@@ -134,7 +134,7 @@ export class Extension {
     return this.authRequests
   }
 
-  enableAuth = (id: number, accountAddresses: string[]) => {
+  approveAuth = (id: number, accountAddresses: string[]) => {
     this.authRequests[id].resolve(accountAddresses)
   }
 

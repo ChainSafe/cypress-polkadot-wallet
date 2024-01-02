@@ -18,7 +18,7 @@
   },
   "scripts": {
     "dev": "cypress open",
-    "build": "tsc",
+    "build": "yarn tsc",
     "lint": "yarn eslint './src/**/*.{ts, tsx, js, jsx, json, yml, yaml}'",
     "format": "yarn prettier --write .",
     "format-check": "yarn prettier --check ."

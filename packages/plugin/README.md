@@ -41,13 +41,13 @@ You can now easily use the following commands:
 ## Functions
 
 <dl>
-<dt><a href="#initExtension">initExtension(accounts, origin, origin)</a></dt>
-<dd><p>Initialized the Polkadot extension. If an origin is passed there is no need to authorize the first connection for Dapps of this origin</p>
+<dt><a href="#initWallet">initWallet(accounts, origin, origin)</a></dt>
+<dd><p>Initialized the Polkadot wallet. If an origin is passed there is no need to authorize the first connection for Dapps of this origin</p>
 </dd>
 <dt><a href="#getAuthRequests">getAuthRequests()</a></dt>
 <dd><p>Read the authentication request queue</p>
 </dd>
-<dt><a href="#enableAuth">enableAuth(id, accountAddresses)</a></dt>
+<dt><a href="#approveAuth">approveAuth(id, accountAddresses)</a></dt>
 <dd><p>Authorize a specific request</p>
 </dd>
 <dt><a href="#rejectAuth">rejectAuth(id, reason)</a></dt>
@@ -64,23 +64,23 @@ You can now easily use the following commands:
 </dd>
 </dl>
 
-<a name="initExtension"></a>
+<a name="initWallet"></a>
 
-## initExtension(accounts, origin, origin)
+## initWallet(accounts, origin, origin)
 
-Initialized the Polkadot extension. If an origin is passed there is no need to authorize the first connection for Dapps of this origin
+Initialized the Polkadot wallet. If an origin is passed there is no need to authorize the first connection for Dapps of this origin
 
 **Kind**: global function
 
 | Param    | Type                                          | Description                                                                 |
 | -------- | --------------------------------------------- | --------------------------------------------------------------------------- |
-| accounts | <code>Array.&lt;InjectedAccount&gt;</code>    | Accounts to load into the extension.                                        |
+| accounts | <code>Array.&lt;InjectedAccount&gt;</code>    | Accounts to load into the wallet.                                           |
 | origin   | <code>string</code> \| <code>undefined</code> | Dapp name to automatically share accounts with without needing to authorize |
 
 **Example**
 
 ```js
-cy.initExtension(
+cy.initWallet(
   [{ address: '7NPoMQbiA6trJKkjB35uk96MeJD4PGWkLQLH7k7hXEkZpiba', name: 'Alice', type: 'sr25519' }],
   'Multix'
 )
@@ -101,23 +101,23 @@ cy.getAuthRequests().then((authQueue) => {
 })
 ```
 
-<a name="enableAuth"></a>
+<a name="approveAuth"></a>
 
-## enableAuth(id, accountAddresses)
+## approveAuth(id, accountAddresses)
 
 Authorize a specific request
 
 **Kind**: global function
 
-| Param            | Type                              | Description                                                                                                                  |
-| ---------------- | --------------------------------- | ---------------------------------------------------------------------------------------------------------------------------- |
-| id               | <code>number</code>               | the id of the request to authorize. This id is part of the getAuthRequests object response.                                  |
-| accountAddresses | <code>Array.&lt;string&gt;</code> | the account addresses to share with the applications. These addresses must be part of the ones shared in the `initExtension` |
+| Param            | Type                              | Description                                                                                                               |
+| ---------------- | --------------------------------- | ------------------------------------------------------------------------------------------------------------------------- |
+| id               | <code>number</code>               | the id of the request to authorize. This id is part of the getAuthRequests object response.                               |
+| accountAddresses | <code>Array.&lt;string&gt;</code> | the account addresses to share with the applications. These addresses must be part of the ones shared in the `initWallet` |
 
 **Example**
 
 ```js
-cy.enableAuth(1694443839903, ['7NPoMQbiA6trJKkjB35uk96MeJD4PGWkLQLH7k7hXEkZpiba'])
+cy.approveAuth(1694443839903, ['7NPoMQbiA6trJKkjB35uk96MeJD4PGWkLQLH7k7hXEkZpiba'])
 ```
 
 <a name="rejectAuth"></a>
