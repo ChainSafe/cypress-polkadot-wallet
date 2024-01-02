@@ -2,7 +2,7 @@
 
 # @chainsafe/cypress-polkadot-wallet monorepo
 
-This is the monorepo for `@chainsafe/cypress-polkadot-wallet` plugin. It includes the sources, and some examples.
+Test your Dapp with Cypress as if you had a Polkadot wallet connected in the browser.
 
 </div>
 

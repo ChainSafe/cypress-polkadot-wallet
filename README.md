@@ -2,7 +2,7 @@
 
 # @chainsafe/cypress-polkadot-wallet monorepo
 
-This is the monorepo for `@chainsafe/cypress-polkadot-wallet` plugin. It includes the sources, and some examples.
+This is the monorepo for `@chainsafe/cypress-polkadot-wallet` Cypress plugin. It includes the sources, and some examples.
 
 </div>
 

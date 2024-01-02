@@ -10,9 +10,10 @@
     [
       "@semantic-release/commit-analyzer",
       {
-        "parserOpts": {
-          "noteKeywords": ["BREAKING CHANGE", "BREAKING CHANGES"]
-        }
+        "releaseRules": [
+          { "message": "*BREAKING CHANGE*", "release": "major" },
+          { "message": "*BREAKING CHANGES*", "release": "major" }
+        ]
       }
     ],
     "@semantic-release/release-notes-generator",
