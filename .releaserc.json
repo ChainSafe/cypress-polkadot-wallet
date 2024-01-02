@@ -12,7 +12,7 @@
       {
         "releaseRules": [
           { "message": "*BREAKING CHANGE*", "release": "major" },
-          { "message": "BREAKING CHANGES", "release": "major" }
+          { "message": "*BREAKING CHANGES*", "release": "major" }
         ]
       }
     ],
