@@ -7,7 +7,7 @@
     "build": "yarn workspaces foreach --all run build",
     "lint": "yarn workspaces foreach --all run lint",
     "formatAll": "yarn workspaces foreach --all run format",
-    "formatAll-check": "yarn workspaces foreach --all run format-check"
+    "format-check": "yarn workspaces foreach --all run format-check"
   },
   "workspaces": [
     "packages/*"
