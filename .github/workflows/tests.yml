@@ -19,6 +19,8 @@ jobs:
           key: ${{ runner.os }}-node_modules-files-build-${{ hashFiles('./yarn.lock') }}
           restore-keys: |
             ${{ runner.os }}-node_modules-build-
+      - name: Install packages
+        run: yarn install --immutable
       - name: Build plugin
         working-directory: packages/plugin
         run: yarn build
