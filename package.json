@@ -4,10 +4,10 @@
   "license": "Apache-2.0",
   "scripts": {
     "plugin:build": "yarn workspace @chainsafe/cypress-polkadot-wallet build",
-    "build": "yarn workspaces foreach --all run build",
-    "lint": "yarn workspaces foreach --all run lint",
-    "formatAll": "yarn workspaces foreach --all run format",
-    "formatAll-check": "yarn workspaces foreach --all run format-check"
+    "build:all": "yarn workspaces foreach --all run build",
+    "lint:all": "yarn workspaces foreach --all run lint",
+    "format:all": "yarn workspaces foreach --all run format",
+    "format-check:all": "yarn workspaces foreach --all run format-check"
   },
   "workspaces": [
     "packages/*"
