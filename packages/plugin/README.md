@@ -1,8 +1,8 @@
 <div align="center">
 
-# @chainsafe/cypress-polkadot-wallet
+# @chainsafe/cypress-polkadot-wallet monorepo
 
-Test your Dapp as if you had a Polkadot wallet connected in the browser.
+This is the monorepo for `@chainsafe/cypress-polkadot-wallet` plugin. It includes the sources, and some examples.
 
 </div>
 
@@ -41,8 +41,8 @@ You can now easily use the following commands:
 ## Functions
 
 <dl>
-<dt><a href="#initWallet">initWallet(accounts, origin, origin)</a></dt>
-<dd><p>Initialized the Polkadot wallet. If an origin is passed there is no need to authorize the first connection for Dapps of this origin</p>
+<dt><a href="#initWallet">initWallet(accounts, origin)</a></dt>
+<dd><p>Initialize the Polkadot wallet. If an origin is passed there is no need to authorize the first connection for Dapps of this origin</p>
 </dd>
 <dt><a href="#getAuthRequests">getAuthRequests()</a></dt>
 <dd><p>Read the authentication request queue</p>
@@ -66,9 +66,9 @@ You can now easily use the following commands:
 
 <a name="initWallet"></a>
 
-## initWallet(accounts, origin, origin)
+## initWallet(accounts, origin)
 
-Initialized the Polkadot wallet. If an origin is passed there is no need to authorize the first connection for Dapps of this origin
+Initialize the Polkadot wallet. If an origin is passed there is no need to authorize the first connection for Dapps of this origin
 
 **Kind**: global function
 
@@ -195,8 +195,8 @@ cy.rejectTx(1694443839903, 'Cancelled')
 
 We have a very simple Dapp example, and a set of Cypress tests using @chainsafe/cypress-polkadot-wallet
 
-- Take a look at the [Example Dapp](../example/src)
-- Take a look at the [Cypress tests](./cypress/e2e/test%20cypress-polkadot-wallet%20plugin.cy.ts)
+- Take a look at the [Example Dapp](/packages/example/src)
+- Take a look at the [Cypress tests](/packages/example/cypress/e2e/test%20cypress-polkadot-wallet%20plugin.cy.ts)
 
 ## 📄 License
 
