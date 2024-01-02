@@ -1,8 +1,8 @@
-name: Lint
+name: Build
 on: pull_request
 jobs:
   extract:
-    name: eslint
+    name: build
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v3
@@ -19,5 +19,5 @@ jobs:
       - name: install packages
         run: yarn install --immutable
 
-      - name: lint
-        run: yarn lint:all
+      - name: build
+        run: yarn build:all
