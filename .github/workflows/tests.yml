@@ -29,8 +29,9 @@ jobs:
       - name: Cypress run
         uses: cypress-io/github-action@v6
         with:
-          # install-command: yarn install
-          start: yarn example:start
+          working-directory: packages/example
+          install-command: yarn install  --immutable
+          start: yarn start
           wait-on: 'http://localhost:3333'
           # custom test command to run
           command: yarn test:ci
