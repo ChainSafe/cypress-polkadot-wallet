@@ -134,7 +134,7 @@ export class Wallet {
     return this.authRequests
   }
 
-  enableAuth = (id: number, accountAddresses: string[]) => {
+  approveAuth = (id: number, accountAddresses: string[]) => {
     this.authRequests[id].resolve(accountAddresses)
   }
 

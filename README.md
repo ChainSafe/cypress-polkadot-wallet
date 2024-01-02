@@ -47,7 +47,7 @@ You can now easily use the following commands:
 <dt><a href="#getAuthRequests">getAuthRequests()</a></dt>
 <dd><p>Read the authentication request queue</p>
 </dd>
-<dt><a href="#enableAuth">enableAuth(id, accountAddresses)</a></dt>
+<dt><a href="#approveAuth">approveAuth(id, accountAddresses)</a></dt>
 <dd><p>Authorize a specific request</p>
 </dd>
 <dt><a href="#rejectAuth">rejectAuth(id, reason)</a></dt>
@@ -101,9 +101,9 @@ cy.getAuthRequests().then((authQueue) => {
 })
 ```
 
-<a name="enableAuth"></a>
+<a name="approveAuth"></a>
 
-## enableAuth(id, accountAddresses)
+## approveAuth(id, accountAddresses)
 
 Authorize a specific request
 
@@ -117,7 +117,7 @@ Authorize a specific request
 **Example**
 
 ```js
-cy.enableAuth(1694443839903, ['7NPoMQbiA6trJKkjB35uk96MeJD4PGWkLQLH7k7hXEkZpiba'])
+cy.approveAuth(1694443839903, ['7NPoMQbiA6trJKkjB35uk96MeJD4PGWkLQLH7k7hXEkZpiba'])
 ```
 
 <a name="rejectAuth"></a>

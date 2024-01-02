@@ -26,7 +26,7 @@ describe('test cypress-polkadot-wallet plugin', () => {
       cy.wrap(requests.length).should('eq', 1)
       // this request should be from the application Multix
       cy.wrap(requests[0].origin).should('eq', EXAMPLE_DAPP_NAME)
-      cy.enableAuth(requests[0].id, [Alice.address])
+      cy.approveAuth(requests[0].id, [Alice.address])
     })
 
     cy.get('#injected').should('contain', 'polkadot-js')

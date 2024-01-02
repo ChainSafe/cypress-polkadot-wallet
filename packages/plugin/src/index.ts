@@ -22,9 +22,9 @@ declare global {
        * Authorize a specific request
        * @param {number} id - the id of the request to authorize. This id is part of the getAuthRequests object response.
        * @param {string[]} accountAddresses - the account addresses to share with the applications. These addresses must be part of the ones shared in the `initWallet`
-       * @example cy.enableAuth(1694443839903, ["7NPoMQbiA6trJKkjB35uk96MeJD4PGWkLQLH7k7hXEkZpiba"])
+       * @example cy.approveAuth(1694443839903, ["7NPoMQbiA6trJKkjB35uk96MeJD4PGWkLQLH7k7hXEkZpiba"])
        */
-      enableAuth: (id: number, accountAddresses: string[]) => void
+      approveAuth: (id: number, accountAddresses: string[]) => void
 
       /**
        * Reject a specific authentication request
@@ -80,8 +80,8 @@ Cypress.Commands.add('getAuthRequests', () => {
   return cy.wrap(wallet.getAuthRequests())
 })
 
-Cypress.Commands.add('enableAuth', (id: number, accountAddresses: string[]) => {
-  return wallet.enableAuth(id, accountAddresses)
+Cypress.Commands.add('approveAuth', (id: number, accountAddresses: string[]) => {
+  return wallet.approveAuth(id, accountAddresses)
 })
 
 Cypress.Commands.add('rejectAuth', (id: number, reason: string) => {
