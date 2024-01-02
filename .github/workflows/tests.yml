@@ -19,7 +19,7 @@ jobs:
           key: ${{ runner.os }}-node_modules-files-build-${{ hashFiles('./yarn.lock') }}
           restore-keys: |
             ${{ runner.os }}-node_modules-build-
-      - name: Install packages
+      - name: Install dependencies
         run: yarn install --immutable
       - name: Build plugin
         working-directory: packages/plugin
@@ -29,7 +29,7 @@ jobs:
       - name: Cypress run
         uses: cypress-io/github-action@v6
         with:
-          install-command: yarn install --immutable
+          install-command: yarn install
           start: yarn example:start
           wait-on: 'http://localhost:3333'
           # custom test command to run
