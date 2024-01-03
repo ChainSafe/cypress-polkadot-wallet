@@ -22,13 +22,19 @@ import './style.css'
 document
   .querySelector<HTMLButtonElement>('#connect-accounts')!
   .addEventListener('click', async () => {
-    console.log('click')
     // returns an array of all the injected sources
     // (this needs to be called first, before other requests)
     const allInjected = await web3Enable('example-dapp')
-    document.querySelector<HTMLDivElement>('#injected')!.innerHTML = JSON.stringify(allInjected)
-    // returns an array of { address, meta: { name, source } }
-    // meta.source contains the name of the wallet that provides this account
-    const allAccounts = await web3Accounts()
-    document.querySelector<HTMLDivElement>('#all-accounts')!.innerHTML = JSON.stringify(allAccounts)
+
+    if (allInjected.length === 0) {
+      document.querySelector<HTMLDivElement>('#injected-error')!.innerHTML = 'rejected'
+    } else {
+      document.querySelector<HTMLDivElement>('#injected')!.innerHTML = JSON.stringify(allInjected)
+
+      // returns an array of { address, meta: { name, source } }
+      // meta.source contains the name of the wallet that provides this account
+      const allAccounts = await web3Accounts()
+      document.querySelector<HTMLDivElement>('#all-accounts')!.innerHTML =
+        JSON.stringify(allAccounts)
+    }
   })

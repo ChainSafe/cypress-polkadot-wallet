@@ -2,17 +2,18 @@
 Object.defineProperty(exports, "__esModule", { value: true });
 var wallet_1 = require("./wallet");
 var wallet = new wallet_1.Wallet();
-var injectWallet = function (win, wallet) {
+var injectWallet = function (win, wallet, walletName) {
     Object.defineProperty(win, 'injectedWeb3', {
-        get: function () { return wallet.getInjectedEnable(); },
+        get: function () { return wallet.getInjectedEnable(walletName); },
         set: function () { }
     });
 };
-Cypress.Commands.add('initWallet', function (accounts, origin) {
-    cy.log('Initializing Wallet');
+Cypress.Commands.add('initWallet', function (accounts, origin, walletName) {
+    if (walletName === void 0) { walletName = 'polkadot-js'; }
+    cy.log('Initializing Wallet with name: ', walletName);
     cy.wrap(wallet.init(accounts, origin));
     return cy.window().then(function (win) {
-        injectWallet(win, wallet);
+        injectWallet(win, wallet, walletName);
     });
 });
 Cypress.Commands.add('getAuthRequests', function () {

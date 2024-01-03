@@ -56,9 +56,9 @@ export class Wallet {
     }
   }
 
-  getInjectedEnable = () => {
+  getInjectedEnable = (extensionName: string) => {
     return {
-      'polkadot-js': {
+      [extensionName]: {
         enable: (origin: string) => {
           const resolvedObject = (selectedAccounts: InjectedAccountWitMnemonic[]) => ({
             accounts: {
