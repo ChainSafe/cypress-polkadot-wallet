@@ -1,11 +1,11 @@
 import { InjectedAccountWitMnemonic } from '@chainsafe/cypress-polkadot-wallet/dist/types'
+import { waitForAuthRequest } from '../utils/waitForAuthRequests'
 
 const Alice = {
-  address: '5GrwvaEF5zXb26Fz9rcQpDWS57CtERHpNehXCPcNoHGKutQY',
-  publicKey: '0xd43593c715fdd31c61141abd04a99fd6822c8558854ccde39a5684e7a56da27d',
+  address: '5Fsaew2ZtsgpaCUWDmBnz8Jn8i49dvJFQUaJ5TZ6NGC1EBeS',
   name: 'Alice',
   type: 'sr25519',
-  mnemonic: 'bottom drive obey lake curtain smoke basket hold race lonely fit walk//Alice'
+  mnemonic: 'blame only east lunar valve mother link pill expect eight quote table'
 } as InjectedAccountWitMnemonic
 
 const EXAMPLE_DAPP_NAME = 'example-dapp'
@@ -39,7 +39,7 @@ describe('test cypress-polkadot-wallet plugin', () => {
   })
 
   it('should init the wallet and connect accounts without authorization request and default polkadot-js name', () => {
-    cy.visit('http://localhost:3333')
+    cy.visit(TESTING_LANDING_PAGE)
     // because we pass the origin here, all the account will be automatically
     // accepted by the wallet comming from this origin
     cy.initWallet([Alice], EXAMPLE_DAPP_NAME)
@@ -56,7 +56,7 @@ describe('test cypress-polkadot-wallet plugin', () => {
   })
 
   it('should init the wallet and connect accounts without authorization request and custom name', () => {
-    cy.visit('http://localhost:3333')
+    cy.visit(TESTING_LANDING_PAGE)
     // because we pass the origin here, all the account will be automatically
     // accepted by the wallet comming from this origin
     cy.initWallet([Alice], EXAMPLE_DAPP_NAME, CUSTOM_WALLET_NAME)
@@ -93,4 +93,48 @@ describe('test cypress-polkadot-wallet plugin', () => {
       cy.get('#all-accounts').should('be.empty')
     })
   })
+
+  it('should sign a transaction and succeed', () => {
+    cy.visit(TESTING_LANDING_PAGE)
+    cy.initWallet([Alice], EXAMPLE_DAPP_NAME)
+    cy.get('#connect-accounts').click()
+    cy.get('#all-accounts').should('contain', Alice.address)
+    cy.get('#send-tx').click()
+
+    // this is using wait-until to wait for the tx request
+    // to reach the wallet
+    waitForAuthRequest()
+
+    cy.getTxRequests().then((req) => {
+      const txRequests = Object.values(req)
+      console.log('txreq', txRequests)
+      cy.wrap(txRequests.length).should('eq', 1)
+      cy.wrap(txRequests[0].payload.address).should('eq', Alice.address)
+      cy.approveTx(txRequests[0].id)
+      cy.get('#tx-hash').should('not.be.empty')
+      cy.get('#tx-error').should('be.empty')
+    })
+  })
+
+  // it('should sign a transaction and fail to pay fees', () => {
+  //   cy.visit(TESTING_LANDING_PAGE)
+  //   cy.initWallet([Alice], EXAMPLE_DAPP_NAME)
+  //   cy.get('#connect-accounts').click()
+  //   cy.get('#all-accounts').should('contain', Alice.address)
+  //   cy.get('#send-tx').click()
+
+  //   // this is using wait-until to wait for the tx request
+  //   // to reach the wallet
+  //   waitForAuthRequest()
+
+  //   cy.getTxRequests().then((req) => {
+  //     const txRequests = Object.values(req)
+  //     console.log('txreq', txRequests)
+  //     cy.wrap(txRequests.length).should('eq', 1)
+  //     cy.wrap(txRequests[0].payload.address).should('eq', Alice.address)
+  //     cy.approveTx(txRequests[0].id)
+  //     cy.get('#tx-hash').should('not.be.empty')
+  //     cy.get('#tx-error').should('be.empty')
+  //   })
+  // })
 })

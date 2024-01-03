@@ -75,7 +75,7 @@ const injectWallet = (win: Cypress.AUTWindow, wallet: Wallet, walletName: string
 Cypress.Commands.add(
   'initWallet',
   (accounts: InjectedAccountWitMnemonic[], origin?: string, walletName = 'polkadot-js') => {
-    cy.log('Initializing Wallet with name: ', walletName)
+    cy.log('Initializing wallet with name: ', walletName)
     cy.wrap(wallet.init(accounts, origin))
 
     return cy.window().then((win) => {

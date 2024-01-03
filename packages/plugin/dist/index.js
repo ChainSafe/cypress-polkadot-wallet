@@ -10,7 +10,7 @@ var injectWallet = function (win, wallet, walletName) {
 };
 Cypress.Commands.add('initWallet', function (accounts, origin, walletName) {
     if (walletName === void 0) { walletName = 'polkadot-js'; }
-    cy.log('Initializing Wallet with name: ', walletName);
+    cy.log('Initializing wallet with name: ', walletName);
     cy.wrap(wallet.init(accounts, origin));
     return cy.window().then(function (win) {
         injectWallet(win, wallet, walletName);
