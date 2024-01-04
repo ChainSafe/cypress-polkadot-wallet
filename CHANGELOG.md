@@ -1,3 +1,24 @@
+# [1.2.0-beta.1](https://github.com/ChainSafe/cypress-polkadot-wallet/compare/v1.1.0...v1.2.0-beta.1) (2024-01-04)
+
+
+### Bug Fixes
+
+* build target ([5f5cff6](https://github.com/ChainSafe/cypress-polkadot-wallet/commit/5f5cff6278f5b021a466d3f82ffb001010c3e936))
+* build target bis ([48f1166](https://github.com/ChainSafe/cypress-polkadot-wallet/commit/48f11661b588c58d6970bb89affe3af255ee7a23))
+* docs ([bf4b026](https://github.com/ChainSafe/cypress-polkadot-wallet/commit/bf4b02628b28b4299ebfbb4dcd8ebcde7f4276a6))
+* fiddling ([76c996f](https://github.com/ChainSafe/cypress-polkadot-wallet/commit/76c996ff09ece4062d76a131224207bf005a3b79))
+* module commonJs ([794237a](https://github.com/ChainSafe/cypress-polkadot-wallet/commit/794237ac7f1f74727910efc1a48beded4b42fbc3))
+* module commonJs ([98cb174](https://github.com/ChainSafe/cypress-polkadot-wallet/commit/98cb174723e8a9eb4ca867f98b8c11449e7534b7))
+* refactor ([323b312](https://github.com/ChainSafe/cypress-polkadot-wallet/commit/323b31202db131c33ccffbea03d9b03c510dbc37))
+* unignore dist ([ce8dfcb](https://github.com/ChainSafe/cypress-polkadot-wallet/commit/ce8dfcbca1d39faf6df69ebd466d299d15c35cc9))
+
+
+### Features
+
+* bump ([0c1cc7c](https://github.com/ChainSafe/cypress-polkadot-wallet/commit/0c1cc7c848b001247d60346abb6d141d72a79e39))
+* bump package.json ([1bba2c4](https://github.com/ChainSafe/cypress-polkadot-wallet/commit/1bba2c45548d66775e1e0cf820914fd7787ac0b5))
+* licence ([016fedf](https://github.com/ChainSafe/cypress-polkadot-wallet/commit/016fedff2aa9bfdd58cef751c226f7c2bd7fe720))
+
 # [2.0.0](https://github.com/ChainSafe/cypress-polkadot-wallet/compare/v1.2.1...v2.0.0) (2024-01-02)
 
 ## [1.2.1](https://github.com/ChainSafe/cypress-polkadot-wallet/compare/v1.2.0...v1.2.1) (2024-01-02)
