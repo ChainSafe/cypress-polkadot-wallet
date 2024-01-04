@@ -1,6 +1,8 @@
 import { AuthRequests, Wallet, TxRequests } from './wallet'
 import { InjectedAccountWitMnemonic } from './types'
 
+const DEFAULT_WALLET_NAME = 'polkadot-js'
+
 declare global {
   namespace Cypress {
     interface Chainable {
@@ -63,7 +65,6 @@ declare global {
   }
 }
 
-const DEFAULT_WALLET_NAME = 'polkadot-js'
 const wallet = new Wallet()
 
 const injectWallet = (win: Cypress.AUTWindow, wallet: Wallet, walletName: string) => {
