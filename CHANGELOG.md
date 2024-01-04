@@ -1,3 +1,10 @@
+# [2.1.0](https://github.com/ChainSafe/cypress-polkadot-wallet/compare/v2.0.0...v2.1.0) (2024-01-04)
+
+
+### Features
+
+* Support custom wallet name and add test of rejection ([#17](https://github.com/ChainSafe/cypress-polkadot-wallet/issues/17)) ([cb6810a](https://github.com/ChainSafe/cypress-polkadot-wallet/commit/cb6810ab62d36b414a32188320610589deef0c8e))
+
 # [2.0.0](https://github.com/ChainSafe/cypress-polkadot-wallet/compare/v1.2.1...v2.0.0) (2024-01-02)
 
 ## [1.2.1](https://github.com/ChainSafe/cypress-polkadot-wallet/compare/v1.2.0...v1.2.1) (2024-01-02)

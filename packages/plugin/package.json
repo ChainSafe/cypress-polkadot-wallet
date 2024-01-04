@@ -1,6 +1,6 @@
 {
   "name": "@chainsafe/cypress-polkadot-wallet",
-  "version": "2.0.0",
+  "version": "1.0.0",
   "keywords": [
     "polkadot",
     "wallet",
@@ -51,6 +51,5 @@
     "semantic-release-yarn": "^3.0.2",
     "typescript": "^5.3.3"
   },
-  "packageManager": "yarn@4.0.2",
-  "stableVersion": "1.0.0-beta.7"
+  "packageManager": "yarn@4.0.2"
 }
