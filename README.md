@@ -41,23 +41,23 @@ You can now easily use the following commands:
 ## Functions
 
 <dl>
-<dt><a href="#initWallet">initWallet(accounts, origin)</a></dt>
-<dd><p>Initialize the Polkadot wallet. If an origin is passed there is no need to authorize the first connection for Dapps of this origin</p>
+<dt><a href="#initWallet">initWallet(accounts, authorizedDappName, walletName)</a></dt>
+<dd><p>Initialize the Polkadot wallet. If an authorizedDappName is passed there is no need to authorize the first connection for Dapps using this name.</p>
 </dd>
 <dt><a href="#getAuthRequests">getAuthRequests()</a></dt>
 <dd><p>Read the authentication request queue</p>
 </dd>
 <dt><a href="#approveAuth">approveAuth(id, accountAddresses)</a></dt>
-<dd><p>Authorize a specific request</p>
+<dd><p>Approve a specific authentication request for the Dapp to get access the wallet accounts</p>
 </dd>
 <dt><a href="#rejectAuth">rejectAuth(id, reason)</a></dt>
-<dd><p>Reject a specific authentication request</p>
+<dd><p>Reject a specific authentication request. The Dapp will receive 0 connected wallet as a result.</p>
 </dd>
 <dt><a href="#getTxRequests">getTxRequests()</a></dt>
-<dd><p>Read the tx request queue</p>
+<dd><p>Read the wallet transaction request queue</p>
 </dd>
 <dt><a href="#approveTx">approveTx(id)</a></dt>
-<dd><p>Authorize a specific transaction</p>
+<dd><p>Approve a specific transaction</p>
 </dd>
 <dt><a href="#rejectTx">rejectTx(id, reason)</a></dt>
 <dd><p>Reject a specific transaction</p>
@@ -66,23 +66,25 @@ You can now easily use the following commands:
 
 <a name="initWallet"></a>
 
-## initWallet(accounts, origin)
+## initWallet(accounts, authorizedDappName, walletName)
 
-Initialize the Polkadot wallet. If an origin is passed there is no need to authorize the first connection for Dapps of this origin
+Initialize the Polkadot wallet. If an authorizedDappName is passed there is no need to authorize the first connection for Dapps using this name.
 
 **Kind**: global function
 
-| Param    | Type                                          | Description                                                                 |
-| -------- | --------------------------------------------- | --------------------------------------------------------------------------- |
-| accounts | <code>Array.&lt;InjectedAccount&gt;</code>    | Accounts to load into the wallet.                                           |
-| origin   | <code>string</code> \| <code>undefined</code> | Dapp name to automatically share accounts with without needing to authorize |
+| Param              | Type                                          | Description                                                                  |
+| ------------------ | --------------------------------------------- | ---------------------------------------------------------------------------- |
+| accounts           | <code>Array.&lt;InjectedAccount&gt;</code>    | Accounts to load into the wallet.                                            |
+| authorizedDappName | <code>string</code> \| <code>undefined</code> | Dapp name to automatically share accounts with, without needing to authorize |
+| walletName         | <code>string</code> \| <code>undefined</code> | Sets the name of the injected wallet (default 'polkadot-js')                 |
 
 **Example**
 
 ```js
 cy.initWallet(
   [{ address: '7NPoMQbiA6trJKkjB35uk96MeJD4PGWkLQLH7k7hXEkZpiba', name: 'Alice', type: 'sr25519' }],
-  'Multix'
+  'My-Dapp',
+  'My-wallet-extension'
 )
 ```
 
@@ -105,7 +107,7 @@ cy.getAuthRequests().then((authQueue) => {
 
 ## approveAuth(id, accountAddresses)
 
-Authorize a specific request
+Approve a specific authentication request for the Dapp to get access the wallet accounts
 
 **Kind**: global function
 
@@ -124,7 +126,7 @@ cy.approveAuth(1694443839903, ['7NPoMQbiA6trJKkjB35uk96MeJD4PGWkLQLH7k7hXEkZpiba
 
 ## rejectAuth(id, reason)
 
-Reject a specific authentication request
+Reject a specific authentication request. The Dapp will receive 0 connected wallet as a result.
 
 **Kind**: global function
 
@@ -143,7 +145,7 @@ cy.rejectAuth(1694443839903, 'Cancelled')
 
 ## getTxRequests()
 
-Read the tx request queue
+Read the wallet transaction request queue
 
 **Kind**: global function  
 **Example**
@@ -158,7 +160,7 @@ cy.getTxRequests().then((txQueue) => {
 
 ## approveTx(id)
 
-Authorize a specific transaction
+Approve a specific transaction
 
 **Kind**: global function
 

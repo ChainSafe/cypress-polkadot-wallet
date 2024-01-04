@@ -1,19 +1,21 @@
 import { AuthRequests, Wallet, TxRequests } from './wallet'
 import { InjectedAccountWitMnemonic } from './types'
 
+const DEFAULT_WALLET_NAME = 'polkadot-js'
+
 declare global {
   namespace Cypress {
     interface Chainable {
       /**
-       * Initialized the Polkadot wallet. If an origin is passed there is no need to authorize the first connection for Dapps of this origin
+       * Initialize the Polkadot wallet. If an authorizedDappName is passed there is no need to authorize the first connection for Dapps using this name.
        * @param {InjectedAccount[]} accounts - Accounts to load into the wallet.
-       * @param {string | undefined} origin - Dapp name to automatically share accounts with, without needing to authorize
+       * @param {string | undefined} authorizedDappName - Dapp name to automatically share accounts with, without needing to authorize
        * @param {string | undefined} walletName - Sets the name of the injected wallet (default 'polkadot-js')
-       * @example cy.initWallet([{ address: '7NPoMQbiA6trJKkjB35uk96MeJD4PGWkLQLH7k7hXEkZpiba', name: 'Alice', type: 'sr25519'}], 'Multix', 'My-wallet-extension')
+       * @example cy.initWallet([{ address: '7NPoMQbiA6trJKkjB35uk96MeJD4PGWkLQLH7k7hXEkZpiba', name: 'Alice', type: 'sr25519'}], 'My-Dapp', 'My-wallet-extension')
        */
       initWallet: (
         accounts: InjectedAccountWitMnemonic[],
-        origin?: string,
+        authorizedDappName?: string,
         walletName?: string
       ) => Chainable<AUTWindow>
 
@@ -24,7 +26,7 @@ declare global {
       getAuthRequests: () => Chainable<AuthRequests>
 
       /**
-       * Authorize a specific request
+       * Approve a specific authentication request for the Dapp to get access the wallet accounts
        * @param {number} id - the id of the request to authorize. This id is part of the getAuthRequests object response.
        * @param {string[]} accountAddresses - the account addresses to share with the applications. These addresses must be part of the ones shared in the `initWallet`
        * @example cy.approveAuth(1694443839903, ["7NPoMQbiA6trJKkjB35uk96MeJD4PGWkLQLH7k7hXEkZpiba"])
@@ -32,7 +34,7 @@ declare global {
       approveAuth: (id: number, accountAddresses: string[]) => void
 
       /**
-       * Reject a specific authentication request
+       * Reject a specific authentication request. The Dapp will receive 0 connected wallet as a result.
        * @param {number} id - the id of the request to reject. This id is part of the getAuthRequests object response.
        * @param {reason} reason - the reason for the rejection
        * @example cy.rejectAuth(1694443839903, "Cancelled")
@@ -40,13 +42,13 @@ declare global {
       rejectAuth: (id: number, reason: string) => void
 
       /**
-       * Read the tx request queue
+       * Read the wallet transaction request queue
        * @example cy.getTxRequests().then((txQueue) => { cy.wrap(Object.values(txQueue).length).should("eq", 1) })
        */
       getTxRequests: () => Chainable<TxRequests>
 
       /**
-       * Authorize a specific transaction
+       * Approve a specific transaction
        * @param {number} id - the id of the request to approve. This id is part of the getTxRequests object response.
        * @example cy.approveTx(1694443839903)
        */
@@ -74,9 +76,13 @@ const injectWallet = (win: Cypress.AUTWindow, wallet: Wallet, walletName: string
 
 Cypress.Commands.add(
   'initWallet',
-  (accounts: InjectedAccountWitMnemonic[], origin?: string, walletName = 'polkadot-js') => {
+  (
+    accounts: InjectedAccountWitMnemonic[],
+    authorizedDappName?: string,
+    walletName = DEFAULT_WALLET_NAME
+  ) => {
     cy.log('Initializing wallet with name: ', walletName)
-    cy.wrap(wallet.init(accounts, origin))
+    cy.wrap(wallet.init(accounts, authorizedDappName))
 
     return cy.window().then((win) => {
       injectWallet(win, wallet, walletName)
