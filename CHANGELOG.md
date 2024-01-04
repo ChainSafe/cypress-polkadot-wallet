@@ -2,17 +2,19 @@
 
 ## [1.2.1](https://github.com/ChainSafe/cypress-polkadot-wallet/compare/v1.2.0...v1.2.1) (2024-01-02)
 
+## [1.2.1](https://github.com/ChainSafe/cypress-polkadot-wallet/compare/v1.2.0...v1.2.1) (2024-01-02)
 
 ### Bug Fixes
 
-* Force a release when the breaking keyword is in the body ([#13](https://github.com/ChainSafe/cypress-polkadot-wallet/issues/13)) ([40652df](https://github.com/ChainSafe/cypress-polkadot-wallet/commit/40652df7f4cfb06e876cf37ef9720013e3b97f7b))
+- Force a release when the breaking keyword is in the body ([#13](https://github.com/ChainSafe/cypress-polkadot-wallet/issues/13)) ([40652df](https://github.com/ChainSafe/cypress-polkadot-wallet/commit/40652df7f4cfb06e876cf37ef9720013e3b97f7b))
 
 # [1.2.0](https://github.com/ChainSafe/cypress-polkadot-wallet/compare/v1.1.0...v1.2.0) (2023-12-13)
 
+# [1.2.0](https://github.com/ChainSafe/cypress-polkadot-wallet/compare/v1.1.0...v1.2.0) (2023-12-13)
 
 ### Features
 
-* Align versions and readme ([#4](https://github.com/ChainSafe/cypress-polkadot-wallet/issues/4)) ([695fb5c](https://github.com/ChainSafe/cypress-polkadot-wallet/commit/695fb5c8762f0b4ce2e0212e5b7a35b1fd6a914a))
+- Align versions and readme ([#4](https://github.com/ChainSafe/cypress-polkadot-wallet/issues/4)) ([695fb5c](https://github.com/ChainSafe/cypress-polkadot-wallet/commit/695fb5c8762f0b4ce2e0212e5b7a35b1fd6a914a))
 
 # [1.1.0](https://github.com/ChainSafe/cypress-polkadot-wallet/compare/v1.0.0...v1.1.0) (2023-12-13)
 
