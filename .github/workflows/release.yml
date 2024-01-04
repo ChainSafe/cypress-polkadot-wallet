@@ -27,7 +27,7 @@ jobs:
         run: yarn plugin:build
       - name: Release
         env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          # GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
           YARN_NPM_AUTH_TOKEN: ${{ secrets.NPM_PUBLISH_TOKEN }}
           GIT_AUTHOR_NAME: 'tbaut'
           GIT_COMMITTER_NAME: 'tbaut'
