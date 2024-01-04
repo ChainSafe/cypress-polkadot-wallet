@@ -25,8 +25,8 @@ export declare class Wallet {
     allowedOrigins: Record<string, string[]>;
     reset: () => void;
     init: (accounts: InjectedAccountWitMnemonic[], allowedOrigin?: string) => Promise<void>;
-    getInjectedEnable: () => {
-        'polkadot-js': {
+    getInjectedEnable: (extensionName: string) => {
+        [x: string]: {
             enable: (origin: string) => Promise<{
                 accounts: InjectedAccounts;
                 signer: {

@@ -33,9 +33,9 @@
   },
   "dependencies": {
     "@polkadot/extension-inject": "^0.46.6",
-    "@polkadot/keyring": "^12.6.1",
-    "@polkadot/types": "^10.11.1",
-    "@polkadot/util-crypto": "^12.6.1"
+    "@polkadot/keyring": "^12.6.2",
+    "@polkadot/types": "^10.11.2",
+    "@polkadot/util-crypto": "^12.6.2"
   },
   "devDependencies": {
     "@semantic-release/changelog": "^6.0.3",

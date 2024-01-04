@@ -85,9 +85,10 @@ var Wallet = /** @class */ (function () {
                 }
             });
         }); };
-        this.getInjectedEnable = function () {
-            return {
-                'polkadot-js': {
+        this.getInjectedEnable = function (extensionName) {
+            var _a;
+            return _a = {},
+                _a[extensionName] = {
                     enable: function (origin) {
                         var resolvedObject = function (selectedAccounts) { return ({
                             accounts: {
@@ -98,6 +99,7 @@ var Wallet = /** @class */ (function () {
                             },
                             signer: {
                                 signPayload: function (payload) {
+                                    console.log('got something', payload);
                                     return new Promise(function (resolve, reject) {
                                         var id = Date.now();
                                         var res = function () {
@@ -148,8 +150,8 @@ var Wallet = /** @class */ (function () {
                         });
                     },
                     version: '1'
-                }
-            };
+                },
+                _a;
         };
         this.getAuthRequests = function () {
             return _this.authRequests;

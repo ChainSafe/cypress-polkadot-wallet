@@ -8,9 +8,14 @@ declare global {
        * Initialized the Polkadot wallet. If an origin is passed there is no need to authorize the first connection for Dapps of this origin
        * @param {InjectedAccount[]} accounts - Accounts to load into the wallet.
        * @param {string | undefined} origin - Dapp name to automatically share accounts with, without needing to authorize
-       * @example cy.initWallet([{ address: '7NPoMQbiA6trJKkjB35uk96MeJD4PGWkLQLH7k7hXEkZpiba', name: 'Alice', type: 'sr25519'}], 'Multix')
+       * @param {string | undefined} walletName - Sets the name of the injected wallet (default 'polkadot-js')
+       * @example cy.initWallet([{ address: '7NPoMQbiA6trJKkjB35uk96MeJD4PGWkLQLH7k7hXEkZpiba', name: 'Alice', type: 'sr25519'}], 'Multix', 'My-wallet-extension')
        */
-      initWallet: (accounts: InjectedAccountWitMnemonic[], origin?: string) => Chainable<AUTWindow>
+      initWallet: (
+        accounts: InjectedAccountWitMnemonic[],
+        origin?: string,
+        walletName?: string
+      ) => Chainable<AUTWindow>
 
       /**
        * Read the authentication request queue
@@ -60,21 +65,24 @@ declare global {
 
 const wallet = new Wallet()
 
-const injectWallet = (win: Cypress.AUTWindow, wallet: Wallet) => {
+const injectWallet = (win: Cypress.AUTWindow, wallet: Wallet, walletName: string) => {
   Object.defineProperty(win, 'injectedWeb3', {
-    get: () => wallet.getInjectedEnable(),
+    get: () => wallet.getInjectedEnable(walletName),
     set: () => {}
   })
 }
 
-Cypress.Commands.add('initWallet', (accounts: InjectedAccountWitMnemonic[], origin?: string) => {
-  cy.log('Initializing Wallet')
-  cy.wrap(wallet.init(accounts, origin))
+Cypress.Commands.add(
+  'initWallet',
+  (accounts: InjectedAccountWitMnemonic[], origin?: string, walletName = 'polkadot-js') => {
+    cy.log('Initializing wallet with name: ', walletName)
+    cy.wrap(wallet.init(accounts, origin))
 
-  return cy.window().then((win) => {
-    injectWallet(win, wallet)
-  })
-})
+    return cy.window().then((win) => {
+      injectWallet(win, wallet, walletName)
+    })
+  }
+)
 
 Cypress.Commands.add('getAuthRequests', () => {
   return cy.wrap(wallet.getAuthRequests())
