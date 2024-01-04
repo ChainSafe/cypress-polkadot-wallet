@@ -17,7 +17,7 @@ export interface TxRequest {
 export type TxRequests = Record<number, TxRequest>;
 export type AuthRequests = Record<number, AuthRequest>;
 export type EnableRequest = number;
-export declare class Extension {
+export declare class Wallet {
     authRequests: AuthRequests;
     accounts: InjectedAccountWitMnemonic[];
     txRequests: TxRequests;
@@ -25,8 +25,8 @@ export declare class Extension {
     allowedOrigins: Record<string, string[]>;
     reset: () => void;
     init: (accounts: InjectedAccountWitMnemonic[], allowedOrigin?: string) => Promise<void>;
-    getInjectedEnable: () => {
-        'polkadot-js': {
+    getInjectedEnable: (extensionName: string) => {
+        [x: string]: {
             enable: (origin: string) => Promise<{
                 accounts: InjectedAccounts;
                 signer: {
@@ -37,7 +37,7 @@ export declare class Extension {
         };
     };
     getAuthRequests: () => AuthRequests;
-    enableAuth: (id: number, accountAddresses: string[]) => void;
+    approveAuth: (id: number, accountAddresses: string[]) => void;
     rejectAuth: (id: number, reason: string) => void;
     getTxRequests: () => TxRequests;
     approveTx: (id: number) => void;

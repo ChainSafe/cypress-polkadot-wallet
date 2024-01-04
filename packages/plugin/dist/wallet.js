@@ -36,12 +36,12 @@ var __generator = (this && this.__generator) || function (thisArg, body) {
     }
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.Extension = void 0;
+exports.Wallet = void 0;
 var keyring_1 = require("@polkadot/keyring");
 var types_1 = require("@polkadot/types");
 var util_crypto_1 = require("@polkadot/util-crypto");
-var Extension = /** @class */ (function () {
-    function Extension() {
+var Wallet = /** @class */ (function () {
+    function Wallet() {
         var _this = this;
         this.authRequests = {};
         this.accounts = [];
@@ -85,9 +85,10 @@ var Extension = /** @class */ (function () {
                 }
             });
         }); };
-        this.getInjectedEnable = function () {
-            return {
-                'polkadot-js': {
+        this.getInjectedEnable = function (extensionName) {
+            var _a;
+            return _a = {},
+                _a[extensionName] = {
                     enable: function (origin) {
                         var resolvedObject = function (selectedAccounts) { return ({
                             accounts: {
@@ -98,6 +99,7 @@ var Extension = /** @class */ (function () {
                             },
                             signer: {
                                 signPayload: function (payload) {
+                                    console.log('got something', payload);
                                     return new Promise(function (resolve, reject) {
                                         var id = Date.now();
                                         var res = function () {
@@ -148,13 +150,13 @@ var Extension = /** @class */ (function () {
                         });
                     },
                     version: '1'
-                }
-            };
+                },
+                _a;
         };
         this.getAuthRequests = function () {
             return _this.authRequests;
         };
-        this.enableAuth = function (id, accountAddresses) {
+        this.approveAuth = function (id, accountAddresses) {
             _this.authRequests[id].resolve(accountAddresses);
         };
         this.rejectAuth = function (id, reason) {
@@ -170,6 +172,6 @@ var Extension = /** @class */ (function () {
             _this.txRequests[id].reject(reason);
         };
     }
-    return Extension;
+    return Wallet;
 }());
-exports.Extension = Extension;
+exports.Wallet = Wallet;
