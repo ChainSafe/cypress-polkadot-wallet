@@ -70,8 +70,6 @@ You can now easily use the following commands:
 
 Initialize the Polkadot wallet. If an authorizedDappName is passed there is no need to authorize the first connection for Dapps using this name.
 
-**Kind**: global function
-
 | Param              | Type                                          | Description                                                                  |
 | ------------------ | --------------------------------------------- | ---------------------------------------------------------------------------- |
 | accounts           | <code>Array.&lt;InjectedAccount&gt;</code>    | Accounts to load into the wallet.                                            |
@@ -94,7 +92,6 @@ cy.initWallet(
 
 Read the authentication request queue
 
-**Kind**: global function  
 **Example**
 
 ```js
@@ -108,8 +105,6 @@ cy.getAuthRequests().then((authQueue) => {
 ## approveAuth(id, accountAddresses)
 
 Approve a specific authentication request for the Dapp to get access the wallet accounts
-
-**Kind**: global function
 
 | Param            | Type                              | Description                                                                                                               |
 | ---------------- | --------------------------------- | ------------------------------------------------------------------------------------------------------------------------- |
@@ -126,14 +121,12 @@ cy.approveAuth(1694443839903, ['7NPoMQbiA6trJKkjB35uk96MeJD4PGWkLQLH7k7hXEkZpiba
 
 ## rejectAuth(id, reason)
 
-Reject a specific authentication request. The Dapp will receive 0 connected wallet as a result.
+Reject a specific authentication request. The Dapp will receive 0 connected wallet as a result
 
-**Kind**: global function
-
-| Param  | Type                | Description                                                                              |
-| ------ | ------------------- | ---------------------------------------------------------------------------------------- |
-| id     | <code>number</code> | the id of the request to reject. This id is part of the getAuthRequests object response. |
-| reason | <code>reason</code> | the reason for the rejection                                                             |
+| Param  | Type                | Description                                                                             |
+| ------ | ------------------- | --------------------------------------------------------------------------------------- |
+| id     | <code>number</code> | the id of the request to reject. This id is part of the getAuthRequests object response |
+| reason | <code>reason</code> | the reason for the rejection                                                            |
 
 **Example**
 
@@ -147,7 +140,6 @@ cy.rejectAuth(1694443839903, 'Cancelled')
 
 Read the wallet transaction request queue
 
-**Kind**: global function  
 **Example**
 
 ```js
@@ -162,11 +154,9 @@ cy.getTxRequests().then((txQueue) => {
 
 Approve a specific transaction
 
-**Kind**: global function
-
-| Param | Type                | Description                                                                             |
-| ----- | ------------------- | --------------------------------------------------------------------------------------- |
-| id    | <code>number</code> | the id of the request to approve. This id is part of the getTxRequests object response. |
+| Param | Type                | Description                                                                            |
+| ----- | ------------------- | -------------------------------------------------------------------------------------- |
+| id    | <code>number</code> | the id of the request to approve. This id is part of the getTxRequests object response |
 
 **Example**
 
@@ -179,8 +169,6 @@ cy.approveTx(1694443839903)
 ## rejectTx(id, reason)
 
 Reject a specific transaction
-
-**Kind**: global function
 
 | Param  | Type                | Description                                                                               |
 | ------ | ------------------- | ----------------------------------------------------------------------------------------- |
