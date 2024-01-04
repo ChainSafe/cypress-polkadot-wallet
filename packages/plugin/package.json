@@ -1,6 +1,6 @@
 {
   "name": "@chainsafe/cypress-polkadot-wallet",
-  "version": "2.0.0",
+  "version": "2.0.0-beta.2",
   "keywords": [
     "polkadot",
     "wallet",
