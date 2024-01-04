@@ -99,7 +99,6 @@ var Wallet = /** @class */ (function () {
                             },
                             signer: {
                                 signPayload: function (payload) {
-                                    console.log('got something', payload);
                                     return new Promise(function (resolve, reject) {
                                         var id = Date.now();
                                         var res = function () {

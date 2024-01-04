@@ -5,13 +5,13 @@ declare global {
     namespace Cypress {
         interface Chainable {
             /**
-             * Initialized the Polkadot wallet. If an origin is passed there is no need to authorize the first connection for Dapps of this origin
+             * Initialize the Polkadot wallet. If an authorizedDappName is passed there is no need to authorize the first connection for Dapps using this name.
              * @param {InjectedAccount[]} accounts - Accounts to load into the wallet.
-             * @param {string | undefined} authorizedOrigin - Dapp name to automatically share accounts with, without needing to authorize
+             * @param {string | undefined} authorizedDappName - Dapp name to automatically share accounts with, without needing to authorize
              * @param {string | undefined} walletName - Sets the name of the injected wallet (default 'polkadot-js')
              * @example cy.initWallet([{ address: '7NPoMQbiA6trJKkjB35uk96MeJD4PGWkLQLH7k7hXEkZpiba', name: 'Alice', type: 'sr25519'}], 'My-Dapp', 'My-wallet-extension')
              */
-            initWallet: (accounts: InjectedAccountWitMnemonic[], authorizedOrigin?: string, walletName?: string) => Chainable<AUTWindow>;
+            initWallet: (accounts: InjectedAccountWitMnemonic[], authorizedDappName?: string, walletName?: string) => Chainable<AUTWindow>;
             /**
              * Read the authentication request queue
              * @example cy.getAuthRequests().then((authQueue) => { cy.wrap(Object.values(authQueue).length).should("eq", 1) })
