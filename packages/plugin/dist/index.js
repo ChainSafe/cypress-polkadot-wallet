@@ -9,10 +9,10 @@ var injectWallet = function (win, wallet, walletName) {
         set: function () { }
     });
 };
-Cypress.Commands.add('initWallet', function (accounts, authorizedOrigin, walletName) {
+Cypress.Commands.add('initWallet', function (accounts, authorizedDappName, walletName) {
     if (walletName === void 0) { walletName = DEFAULT_WALLET_NAME; }
     cy.log('Initializing wallet with name: ', walletName);
-    cy.wrap(wallet.init(accounts, authorizedOrigin));
+    cy.wrap(wallet.init(accounts, authorizedDappName));
     return cy.window().then(function (win) {
         injectWallet(win, wallet, walletName);
     });
