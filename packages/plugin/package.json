@@ -1,9 +1,24 @@
 {
   "name": "@chainsafe/cypress-polkadot-wallet",
-  "version": "1.1.0-beta.1",
+  "version": "2.0.0",
+  "keywords": [
+    "polkadot",
+    "wallet",
+    "cypress",
+    "plugin",
+    "test"
+  ],
+  "homepage": "https://github.com/ChainSafe/cypress-polkadot-wallet",
+  "bugs": {
+    "url": "https://github.com/ChainSafe/cypress-polkadot-wallet/issues"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/ChainSafe/cypress-polkadot-wallet.git"
+  },
   "scripts": {
     "dev": "cypress open",
-    "build": "tsc",
+    "build": "yarn tsc",
     "lint": "yarn eslint './src/**/*.{ts, tsx, js, jsx, json, yml, yaml}'",
     "format": "yarn prettier --write .",
     "format-check": "yarn prettier --check ."
@@ -18,9 +33,9 @@
   },
   "dependencies": {
     "@polkadot/extension-inject": "^0.46.6",
-    "@polkadot/keyring": "^12.6.1",
-    "@polkadot/types": "^10.11.1",
-    "@polkadot/util-crypto": "^12.6.1"
+    "@polkadot/keyring": "^12.6.2",
+    "@polkadot/types": "^10.11.2",
+    "@polkadot/util-crypto": "^12.6.2"
   },
   "devDependencies": {
     "@semantic-release/changelog": "^6.0.3",
