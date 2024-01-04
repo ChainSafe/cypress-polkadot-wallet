@@ -10,6 +10,7 @@
     [
       "@semantic-release/commit-analyzer",
       {
+        "preset": "angular",
         "releaseRules": [
           { "message": "*BREAKING CHANGE*", "release": "major" },
           { "message": "*BREAKING CHANGES*", "release": "major" }
