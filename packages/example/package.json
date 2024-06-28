@@ -7,7 +7,7 @@
     "dev": "vite",
     "build": "tsc && vite build",
     "preview": "vite preview",
-    "start": "yarn vite serve --port 3333",
+    "start": "yarn vite serve --port 3333 --host 127.0.0.1",
     "test": "cypress open",
     "test:ci": "cypress run --browser chrome --headless",
     "lint": "yarn eslint './{src, cypress}/**/*.{ts, tsx, js, jsx, json, yml, yaml}'",
