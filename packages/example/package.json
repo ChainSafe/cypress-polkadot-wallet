@@ -15,8 +15,8 @@
     "format-check": "yarn prettier --check ."
   },
   "dependencies": {
-    "@polkadot/api": "^10.11.2",
-    "@polkadot/extension-dapp": "^0.46.6"
+    "@polkadot/api": "^12.0.2",
+    "@polkadot/extension-dapp": "^0.48.1"
   },
   "devDependencies": {
     "@typescript-eslint/eslint-plugin": "^6.14.0",
