@@ -3,7 +3,7 @@ import { web3Accounts, web3Enable, web3FromSource } from '@polkadot/extension-da
 import { ApiPromise, WsProvider } from '@polkadot/api'
 import { InjectedAccountWithMeta } from '@polkadot/extension-inject/types'
 
-const ROCOCO_WS_PROVIDER = 'wss://rococo-rpc.polkadot.io'
+const PASEO_WS_PROVIDER = 'wss://rpc.ibp.network/paseo'
 let injectedAccounts: InjectedAccountWithMeta[] = []
 
 document
@@ -28,7 +28,7 @@ document
   })
 
 document.querySelector<HTMLButtonElement>('#send-tx')!.addEventListener('click', async () => {
-  const provider = new WsProvider(ROCOCO_WS_PROVIDER)
+  const provider = new WsProvider(PASEO_WS_PROVIDER)
   const api = await ApiPromise.create({ provider })
 
   // Initialise the provider to connect to the local node

@@ -81,7 +81,10 @@ Cypress.Commands.add(
     authorizedDappName?: string,
     walletName = DEFAULT_WALLET_NAME
   ) => {
-    cy.log('Initializing wallet with name: ', walletName)
+    cy.log(`Initializing wallet with name: ${walletName}`)
+    cy.log(`Authorized Dapp name: ${authorizedDappName}`)
+    cy.log(`Injected Accounts: ${JSON.stringify(accounts.map((a) => a.address))}`)
+
     cy.wrap(wallet.init(accounts, authorizedDappName))
 
     return cy.window().then((win) => {
