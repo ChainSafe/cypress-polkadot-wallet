@@ -1,12 +1,12 @@
-import { InjectedAccountWitMnemonic } from '@chainsafe/cypress-polkadot-wallet/dist/types'
 import { waitForAuthRequest } from '../utils/waitForAuthRequests'
 
 const Alice = {
   address: '5Fsaew2ZtsgpaCUWDmBnz8Jn8i49dvJFQUaJ5TZ6NGC1EBeS',
+  addressWithPrefix0: '14osoGHdkexJ1jV2BQEo8H8vzL3oLDrPUyJnEkYSvMDXQcu7',
   name: 'Alice',
   type: 'sr25519',
   mnemonic: 'blame only east lunar valve mother link pill expect eight quote table'
-} as InjectedAccountWitMnemonic
+} as any
 
 const EXAMPLE_DAPP_NAME = 'example-dapp'
 const CUSTOM_WALLET_NAME = 'My-custom-wallet'
@@ -106,7 +106,7 @@ describe('test cypress-polkadot-wallet plugin', () => {
     cy.getTxRequests().then((req) => {
       const txRequests = Object.values(req)
       cy.wrap(txRequests.length).should('eq', 1)
-      cy.wrap(txRequests[0].payload.address).should('eq', Alice.address)
+      cy.wrap(txRequests[0].payload.address).should('eq', Alice.addressWithPrefix0)
       cy.approveTx(txRequests[0].id)
       cy.get('#tx-hash').should('not.be.empty')
       cy.get('#tx-events', { timeout: 10000 }).should('contain', 'system.ExtrinsicSuccess')
@@ -129,7 +129,7 @@ describe('test cypress-polkadot-wallet plugin', () => {
     cy.getTxRequests().then((req) => {
       const txRequests = Object.values(req)
       cy.wrap(txRequests.length).should('eq', 1)
-      cy.wrap(txRequests[0].payload.address).should('eq', Alice.address)
+      cy.wrap(txRequests[0].payload.address).should('eq', Alice.addressWithPrefix0)
       cy.approveTx(txRequests[0].id)
       // the tx hash will be present, but the chain will reject the
       // tx eventually
