@@ -1,6 +1,6 @@
 import { Injected, InjectedAccounts } from '@polkadot/extension-inject/types';
 import { Keyring } from '@polkadot/keyring';
-import { SignerPayloadJSON, SignerResult } from '@polkadot/types/types';
+import { SignerPayloadJSON, SignerPayloadRaw, SignerResult } from '@polkadot/types/types';
 import { InjectedAccountWitMnemonic } from './types';
 export interface AuthRequest {
     id: number;
@@ -10,7 +10,7 @@ export interface AuthRequest {
 }
 export interface TxRequest {
     id: number;
-    payload: SignerPayloadJSON;
+    payload: SignerPayloadJSON | SignerPayloadRaw;
     resolve: () => void;
     reject: (reason: string) => void;
 }
@@ -31,6 +31,7 @@ export declare class Wallet {
                 accounts: InjectedAccounts;
                 signer: {
                     signPayload: (payload: SignerPayloadJSON) => Promise<SignerResult>;
+                    signRaw: (payload: SignerPayloadRaw) => Promise<SignerResult>;
                 };
             }> | Promise<Injected>;
             version: string;
