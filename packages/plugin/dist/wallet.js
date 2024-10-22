@@ -71,7 +71,9 @@ var Wallet = /** @class */ (function () {
                             var _b;
                             var mnemonic = _a.mnemonic;
                             // we only add to the keyring the accounts with a known mnemonic
-                            !!mnemonic && ((_b = _this.keyring) === null || _b === void 0 ? void 0 : _b.addFromUri(mnemonic));
+                            if (mnemonic) {
+                                (_b = _this.keyring) === null || _b === void 0 ? void 0 : _b.addFromUri(mnemonic);
+                            }
                         });
                         accountAddresses = accounts.map(function (_a) {
                             var address = _a.address;
