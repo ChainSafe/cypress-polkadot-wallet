@@ -46,7 +46,9 @@ export class Wallet {
     this.keyring = new Keyring({ type: 'sr25519' })
     accounts.forEach(({ mnemonic }) => {
       // we only add to the keyring the accounts with a known mnemonic
-      !!mnemonic && this.keyring?.addFromUri(mnemonic)
+      if (mnemonic) {
+        this.keyring?.addFromUri(mnemonic)
+      }
     })
 
     const accountAddresses = accounts.map(({ address }) => address)

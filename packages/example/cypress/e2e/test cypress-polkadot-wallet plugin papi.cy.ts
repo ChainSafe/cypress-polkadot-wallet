@@ -115,7 +115,7 @@ describe('test cypress-polkadot-wallet plugin', () => {
     })
   })
 
-  it.only('should sign a transaction and get an error', () => {
+  it('should sign a transaction and get an error', () => {
     cy.visit(TESTING_LANDING_PAGE)
     cy.initWallet([Alice], EXAMPLE_DAPP_NAME)
     cy.get('#connect-accounts-papi').click()
