@@ -1,9 +1,10 @@
 import { Injected, InjectedAccounts } from '@polkadot/extension-inject/types'
 import { Keyring } from '@polkadot/keyring'
 import { TypeRegistry } from '@polkadot/types'
-import { SignerPayloadJSON, SignerResult } from '@polkadot/types/types'
+import { SignerPayloadJSON, SignerPayloadRaw, SignerResult } from '@polkadot/types/types'
 import { cryptoWaitReady } from '@polkadot/util-crypto'
 import { InjectedAccountWitMnemonic } from './types'
+import { u8aToHex, u8aWrapBytes } from '@polkadot/util'
 
 export interface AuthRequest {
   id: number
@@ -14,7 +15,7 @@ export interface AuthRequest {
 
 export interface TxRequest {
   id: number
-  payload: SignerPayloadJSON
+  payload: SignerPayloadJSON | SignerPayloadRaw
   resolve: () => void
   reject: (reason: string) => void
 }
@@ -45,7 +46,9 @@ export class Wallet {
     this.keyring = new Keyring({ type: 'sr25519' })
     accounts.forEach(({ mnemonic }) => {
       // we only add to the keyring the accounts with a known mnemonic
-      !!mnemonic && this.keyring?.addFromUri(mnemonic)
+      if (mnemonic) {
+        this.keyring?.addFromUri(mnemonic)
+      }
     })
 
     const accountAddresses = accounts.map(({ address }) => address)
@@ -92,6 +95,29 @@ export class Wallet {
                   const rej = (reason: string) => reject(new Error(reason))
 
                   this.txRequests[id] = { id, payload, resolve: res, reject: rej }
+                })
+              },
+              signRaw: (payload: SignerPayloadRaw): Promise<SignerResult> => {
+                return new Promise<SignerResult>((resolve, reject) => {
+                  const id = Date.now()
+
+                  const rest = () => {
+                    const pair = this.keyring?.getPair(payload.address)
+                    if (!pair) {
+                      console.error(
+                        `Pair not found for encoded address ${payload.address}, with keyring:`,
+                        this.keyring?.toJson
+                      )
+                      return
+                    }
+
+                    const signature = u8aToHex(pair.sign(u8aWrapBytes(payload.data)))
+
+                    resolve({ id, signature: signature })
+                  }
+                  const rej = (reason: string) => reject(new Error(reason))
+
+                  this.txRequests[id] = { id, payload, resolve: rest, reject: rej }
                 })
               }
             }

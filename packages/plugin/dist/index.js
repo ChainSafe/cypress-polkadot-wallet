@@ -11,7 +11,9 @@ var injectWallet = function (win, wallet, walletName) {
 };
 Cypress.Commands.add('initWallet', function (accounts, authorizedDappName, walletName) {
     if (walletName === void 0) { walletName = DEFAULT_WALLET_NAME; }
-    cy.log('Initializing wallet with name: ', walletName);
+    cy.log("Initializing wallet with name: ".concat(walletName));
+    cy.log("Authorized Dapp name: ".concat(authorizedDappName));
+    cy.log("Injected Accounts: ".concat(JSON.stringify(accounts.map(function (a) { return a.address; }))));
     cy.wrap(wallet.init(accounts, authorizedDappName));
     return cy.window().then(function (win) {
         injectWallet(win, wallet, walletName);

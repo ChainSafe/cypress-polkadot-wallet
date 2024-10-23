@@ -9,8 +9,8 @@ var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, ge
     });
 };
 var __generator = (this && this.__generator) || function (thisArg, body) {
-    var _ = { label: 0, sent: function() { if (t[0] & 1) throw t[1]; return t[1]; }, trys: [], ops: [] }, f, y, t, g;
-    return g = { next: verb(0), "throw": verb(1), "return": verb(2) }, typeof Symbol === "function" && (g[Symbol.iterator] = function() { return this; }), g;
+    var _ = { label: 0, sent: function() { if (t[0] & 1) throw t[1]; return t[1]; }, trys: [], ops: [] }, f, y, t, g = Object.create((typeof Iterator === "function" ? Iterator : Object).prototype);
+    return g.next = verb(0), g["throw"] = verb(1), g["return"] = verb(2), typeof Symbol === "function" && (g[Symbol.iterator] = function() { return this; }), g;
     function verb(n) { return function (v) { return step([n, v]); }; }
     function step(op) {
         if (f) throw new TypeError("Generator is already executing.");
@@ -40,6 +40,7 @@ exports.Wallet = void 0;
 var keyring_1 = require("@polkadot/keyring");
 var types_1 = require("@polkadot/types");
 var util_crypto_1 = require("@polkadot/util-crypto");
+var util_1 = require("@polkadot/util");
 var Wallet = /** @class */ (function () {
     function Wallet() {
         var _this = this;
@@ -70,7 +71,9 @@ var Wallet = /** @class */ (function () {
                             var _b;
                             var mnemonic = _a.mnemonic;
                             // we only add to the keyring the accounts with a known mnemonic
-                            !!mnemonic && ((_b = _this.keyring) === null || _b === void 0 ? void 0 : _b.addFromUri(mnemonic));
+                            if (mnemonic) {
+                                (_b = _this.keyring) === null || _b === void 0 ? void 0 : _b.addFromUri(mnemonic);
+                            }
                         });
                         accountAddresses = accounts.map(function (_a) {
                             var address = _a.address;
@@ -119,6 +122,23 @@ var Wallet = /** @class */ (function () {
                                         };
                                         var rej = function (reason) { return reject(new Error(reason)); };
                                         _this.txRequests[id] = { id: id, payload: payload, resolve: res, reject: rej };
+                                    });
+                                },
+                                signRaw: function (payload) {
+                                    return new Promise(function (resolve, reject) {
+                                        var id = Date.now();
+                                        var rest = function () {
+                                            var _a, _b;
+                                            var pair = (_a = _this.keyring) === null || _a === void 0 ? void 0 : _a.getPair(payload.address);
+                                            if (!pair) {
+                                                console.error("Pair not found for encoded address ".concat(payload.address, ", with keyring:"), (_b = _this.keyring) === null || _b === void 0 ? void 0 : _b.toJson);
+                                                return;
+                                            }
+                                            var signature = (0, util_1.u8aToHex)(pair.sign((0, util_1.u8aWrapBytes)(payload.data)));
+                                            resolve({ id: id, signature: signature });
+                                        };
+                                        var rej = function (reason) { return reject(new Error(reason)); };
+                                        _this.txRequests[id] = { id: id, payload: payload, resolve: rest, reject: rej };
                                     });
                                 }
                             }
