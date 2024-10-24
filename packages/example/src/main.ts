@@ -2,11 +2,8 @@ import './style.css'
 import { web3Accounts, web3Enable, web3FromSource } from '@polkadot/extension-dapp'
 import { ApiPromise, WsProvider } from '@polkadot/api'
 import { InjectedAccountWithMeta } from '@polkadot/extension-inject/types'
-// `dot` is the name we gave to `npx papi add`
 import { MultiAddress, pas } from '@polkadot-api/descriptors'
 import { createClient } from 'polkadot-api'
-// import from "polkadot-api/ws-provider/node"
-// if you are running in a NodeJS environment
 import { getWsProvider } from 'polkadot-api/ws-provider/web'
 import { withPolkadotSdkCompat } from 'polkadot-api/polkadot-sdk-compat'
 import {
@@ -22,19 +19,13 @@ const EXAMPLE_DAPP_NAME = 'example-dapp'
 let injectedAccountsPjs: InjectedAccountWithMeta[] = []
 let injectedAccountsPapi: InjectedPolkadotAccount[] = []
 
-const getPapi = () => {
-  // Connect to the polkadot relay chain.
-  const client = createClient(
-    // Polkadot-SDK Nodes have issues, we recommend adding this enhancer
-    // see Requirements page for more info
-    withPolkadotSdkCompat(getWsProvider(PASEO_WS_PROVIDER))
-  )
+// --------- PAPI
+const client = createClient(withPolkadotSdkCompat(getWsProvider(PASEO_WS_PROVIDER)))
+const papi = client.getTypedApi(pas)
 
-  // With the `client`, you can get information such as subscribing to the last
-  // block to get the latest hash:
-  const pasApi = client.getTypedApi(pas)
-  return pasApi
-}
+// --------- PJS
+const provider = new WsProvider(PASEO_WS_PROVIDER)
+const pjsApi = await ApiPromise.create({ provider })
 
 document
   .querySelector<HTMLButtonElement>('#connect-accounts-papi')!
@@ -87,10 +78,6 @@ document
   })
 
 document.querySelector<HTMLButtonElement>('#send-tx-pjs')!.addEventListener('click', async () => {
-  const provider = new WsProvider(PASEO_WS_PROVIDER)
-  const api = await ApiPromise.create({ provider })
-
-  // Initialise the provider to connect to the local node
   const account = injectedAccountsPjs[0]
 
   if (injectedAccountsPjs.length === 0) {
@@ -100,7 +87,7 @@ document.querySelector<HTMLButtonElement>('#send-tx-pjs')!.addEventListener('cli
 
   const amount = document.querySelector<HTMLInputElement>('#amount-input')?.value
 
-  const transferExtrinsic = api.tx.balances.transferKeepAlive(account.address, amount)
+  const transferExtrinsic = pjsApi.tx.balances.transferKeepAlive(account.address, amount)
   const injector = await web3FromSource(account.meta.source)
 
   transferExtrinsic
@@ -122,9 +109,6 @@ document.querySelector<HTMLButtonElement>('#send-tx-pjs')!.addEventListener('cli
 })
 
 document.querySelector<HTMLButtonElement>('#send-tx-papi')!.addEventListener('click', async () => {
-  const api = await getPapi()
-
-  // Initialise the provider to connect to the local node
   const account = injectedAccountsPapi[0]
 
   if (injectedAccountsPapi.length === 0) {
@@ -134,7 +118,7 @@ document.querySelector<HTMLButtonElement>('#send-tx-papi')!.addEventListener('cl
 
   const amount = document.querySelector<HTMLInputElement>('#amount-input')?.value
 
-  const transferExtrinsic = api.tx.Balances.transfer_keep_alive({
+  const transferExtrinsic = papi.tx.Balances.transfer_keep_alive({
     dest: MultiAddress.Id(account.address),
     value: amount ? BigInt(amount) : 0n
   })
@@ -156,10 +140,3 @@ document.querySelector<HTMLButtonElement>('#send-tx-papi')!.addEventListener('cl
     }
   })
 })
-
-// { "type": "Balances", "value": { "type": "Withdraw", "value": { "who": "12bzRJfh7arnnfPPUZHeJUaE62QLEwhK48QnH9LXeK2m1iZU", "amount": "153060938" } } }
-// { "type": "Balances", "value": { "type": "Deposit", "value": { "who": "12bzRJfh7arnnfPPUZHeJUaE62QLEwhK48QnH9LXeK2m1iZU", "amount": "0" } } }
-// { "type": "Balances", "value": { "type": "Deposit", "value": { "who": "13UVJyLnbVp9RBZYFwFGyDvVd1y27Tt8tkntv6Q7JVPhFsTB", "amount": "122448750" } } }
-// { "type": "Balances", "value": { "type": "Deposit", "value": { "who": "14Q6d7nBEnmvThE5o8sFdXJbxLAJzb9vPw2w4utdWwPrWosa", "amount": "30612188" } } }
-// { "type": "TransactionPayment", "value": { "type": "TransactionFeePaid", "value": { "who": "12bzRJfh7arnnfPPUZHeJUaE62QLEwhK48QnH9LXeK2m1iZU", "actual_fee": "153060938", "tip": "0" } } }
-// { "type": "System", "value": { "type": "ExtrinsicSuccess", "value": { "dispatch_info": { "weight": { "ref_time": "259771000", "proof_size": "3593" }, "class": { "type": "Normal" }, "pays_fee": { "type": "Yes" } } } } }
