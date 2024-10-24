@@ -19,14 +19,6 @@ const EXAMPLE_DAPP_NAME = 'example-dapp'
 let injectedAccountsPjs: InjectedAccountWithMeta[] = []
 let injectedAccountsPapi: InjectedPolkadotAccount[] = []
 
-// --------- PAPI
-const client = createClient(withPolkadotSdkCompat(getWsProvider(PASEO_WS_PROVIDER)))
-const papi = client.getTypedApi(pas)
-
-// --------- PJS
-const provider = new WsProvider(PASEO_WS_PROVIDER)
-const pjsApi = await ApiPromise.create({ provider })
-
 document
   .querySelector<HTMLButtonElement>('#connect-accounts-papi')!
   .addEventListener('click', async () => {
@@ -78,6 +70,9 @@ document
   })
 
 document.querySelector<HTMLButtonElement>('#send-tx-pjs')!.addEventListener('click', async () => {
+  const provider = new WsProvider(PASEO_WS_PROVIDER)
+  const pjsApi = await ApiPromise.create({ provider })
+
   const account = injectedAccountsPjs[0]
 
   if (injectedAccountsPjs.length === 0) {
@@ -109,6 +104,9 @@ document.querySelector<HTMLButtonElement>('#send-tx-pjs')!.addEventListener('cli
 })
 
 document.querySelector<HTMLButtonElement>('#send-tx-papi')!.addEventListener('click', async () => {
+  const client = createClient(withPolkadotSdkCompat(getWsProvider(PASEO_WS_PROVIDER)))
+  const papi = client.getTypedApi(pas)
+
   const account = injectedAccountsPapi[0]
 
   if (injectedAccountsPapi.length === 0) {
