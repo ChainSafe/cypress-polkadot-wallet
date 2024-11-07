@@ -34,6 +34,10 @@ import '@chainsafe/cypress-polkadot-wallet'
 require('@chainsafe/cypress-polkadot-wallet')
 ```
 
+## 📌 Important
+
+If you're using [papi](https://github.com/polkadot-api/polkadot-api), make sure to set up a `dappName` when calling `connectInjectedExtension` (version `1.6.0` or above is required for that to work). This will guarantee higher compatibility with this plugin.
+
 ## 🧪 Usage
 
 You can now easily use the following commands:
@@ -186,7 +190,9 @@ cy.rejectTx(1694443839903, 'Cancelled')
 We have a very simple Dapp example, and a set of Cypress tests using @chainsafe/cypress-polkadot-wallet
 
 - Take a look at the [Example Dapp](/packages/example/src)
-- Take a look at the [Cypress tests](/packages/example/cypress/e2e/test%20cypress-polkadot-wallet%20plugin.cy.ts)
+- Take a look at the Cypress tests for:
+  - [papi](/packages/example/cypress/e2e/test%20cypress-polkadot-wallet%20plugin%20papi.cy.ts)
+  - [pjs](packages/example/cypress/e2e/test%20cypress-polkadot-wallet%20plugin%20pjs.cy.ts)
 
 ## 📄 License
 
