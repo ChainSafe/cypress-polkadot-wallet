@@ -1,12 +1,13 @@
 import { waitForAuthRequest } from '../utils/waitForAuthRequests'
+import { KeypairType } from '@polkadot/util-crypto/types'
 
 const Alice = {
   address: '5Fsaew2ZtsgpaCUWDmBnz8Jn8i49dvJFQUaJ5TZ6NGC1EBeS',
   addressWithPrefix0: '14osoGHdkexJ1jV2BQEo8H8vzL3oLDrPUyJnEkYSvMDXQcu7',
   name: 'Alice',
-  type: 'sr25519',
+  type: 'sr25519' as KeypairType,
   mnemonic: 'blame only east lunar valve mother link pill expect eight quote table'
-} as any
+}
 
 const EXAMPLE_DAPP_NAME = 'example-dapp'
 const CUSTOM_WALLET_NAME = 'My-custom-wallet'
